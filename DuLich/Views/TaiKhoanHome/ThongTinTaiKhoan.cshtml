@@ -1,0 +1,262 @@
+﻿@model DuLich.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "Thông tin tài khoản";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<link href="~/Content/styles/css/upload-avatar.css" rel="stylesheet" />
+
+<div id="tabs" class="row" style="padding-top: 200px; position: relative; left: 100px; min-width:70em;">
+    <div>
+        <div class="col-md-7" style="color: aqua; max-width: 20em; ">
+            <p style="color:aqua; font-weight:bold">
+                Xin chào, <span style="color:red;"> @Model.TenHienThi</span>&nbsp;!
+                <hr />
+            </p>
+            <ul>
+                <li>
+                    <a href="#tabs-1">
+                        <span>
+                            <img src="@Model.HinhAnh" class="img-circle elevation-2 border border-dark border-10" style="margin-right: 20px; border-radius: 40px; background: linear-gradient(to right, #FF6633, #3333FF, #FF6633); height: 80px; width: 80px; ">Avatar
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tabs-2">
+                        <span>Thông tin tài khoản</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tabs-3">
+                        <span>Đổi mật khẩu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#tabs-4">
+                        <span>Tour đã book</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div id="tabs-1" class="col-md-5" style="min-height: 30vw; left: inherit;">
+        <h1 class="title-head margin-top-0" style="color:aqua; font-weight:bold">Đổi Avatar</h1>
+        <hr />
+        @using (Html.BeginForm("CapNhatAnh", "TaiKhoanHome", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="tenDangNhap" value="@Model.TenDangNhap" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="avatar-wrapper">
+                <img class="profile-pic" src="" />
+                <div class="upload-button">
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                </div>
+                <input name="avatar" class="file-upload" type="file" accept="image/*" />
+            </div>
+            <br />
+            <p style="color:red">@ViewBag.error</p>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input style="border-color:black; color:snow; background-color:aqua" type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+    <div id="tabs-2" class="col-md-5" style="min-height: 30vw; left: inherit;">
+        <h1 class="title-head margin-top-0" style="color:aqua; font-weight:bold">Thông tin tài khoản</h1>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên Đăng Nhập:&nbsp;&nbsp;
+            </dt>
+
+            <dd>
+                @Model.TenDangNhap
+            </dd>
+
+            <dt>
+                Mật Khẩu:&nbsp;&nbsp;
+            </dt>
+
+            <dd>
+                ***********
+            </dd>
+
+            <dt>
+                Tên Tài Khoản:&nbsp;&nbsp;
+            </dt>
+
+            <dd>
+                @Model.TenHienThi
+            </dd>
+
+            <dt>
+                Email:&nbsp;&nbsp;
+            </dt>
+
+            <dd>
+                @Model.Email
+            </dd>
+
+            <dt>
+                Số Điện Thoại:&nbsp;&nbsp;
+            </dt>
+
+            <dd>
+                @Model.SoDienThoai
+            </dd>
+
+            <dt>
+                Trạng Thái Tài Khoản:&nbsp;&nbsp;
+            </dt>
+
+            @if (Model.Active == true)
+            {
+                <dd>
+                    Mở
+                </dd>
+            }
+            else
+            {
+                <dd>
+                    Khóa
+                </dd>
+            }
+
+        </dl>
+    </div>
+    <div id="tabs-3" class="col-md-5" style="min-height: 30vw; left: inherit;">
+        <h1 class="title-head margin-top-0" style="color:aqua; font-weight:bold">Đổi Mật Khẩu</h1>
+        <hr />
+        <form action="/TaiKhoanHone/DoiMK" method="post" enctype="multipart/form-data">
+            <h5>Mật khẩu cũ</h5>
+            <input type="password" name="matKhau" placeholder="Nhập mật khẩu cũ" />
+            <h5>Mật khẩu mới</h5>
+            <input type="password" name="matKhau" placeholder="Nhập mật khẩu cũ" />
+            <h5>Xác nhận mật khẩu</h5>
+            <input type="password" name="matKhau" placeholder="Nhập mật khẩu xác nhận" />
+        </form>
+    </div>
+    <div id="tabs-4" class="col-md-5" style="min-height: 30vw; left: inherit;">
+        <h1 class="title-head margin-top-0" style="color:aqua; font-weight:bold">Tour đã book</h1>
+        <hr />
+        <table class="table table-bordered" id="tableTK" style="color:unset">
+            <tr>
+                <th>
+                    Tour     
+                </th>
+                <th>
+                    Ngày khởi hành
+                </th>
+                <th>
+                    Ngày trở về
+                </th>
+                <th>
+                    Địa chỉ đón
+                </th>
+                <th>
+                    Địa chỉ thả
+                </th>
+                <th>
+                    Loại xe
+                </th>
+                <th>
+                    Số lượng hành khách
+                </th>
+                <th>
+                    Giá
+                </th>
+                <th>
+                    Tình trạng
+                </th>
+            </tr>
+
+            @foreach (var item in new DuLich.Models.mapDatTour().DanhSachTheoTK(@Model.TenDangNhap))
+            {
+        <tr>
+            <td style="min-width: 150px;">
+                @{
+                    var Id_Tour = new DuLich.Models.mapDatTourDetail().ChiTiet(item.ID).idTour;
+                    var tenTour = new DuLich.Models.mapTour().ChiTiet(Id_Tour);
+                    if (tenTour != null)
+                    {
+                        <span>@tenTour.TieuDe</span>
+                    }
+                }
+            </td>     
+            <td>
+                @item.NgayKhoiHanh
+            </td>
+            <td>
+                @item.NgayTroVe
+            </td>
+            <td>
+                @item.DiaChiDon
+            </td>
+            <td>
+                @item.DiaChiTha
+            </td>
+            <td>
+                @item.LoaiXe
+            </td>
+            <td>
+                @item.SoLuongHanhKhach
+            </td>
+            <td>
+                @{
+                    var giaTour = new DuLich.Models.mapDatTourDetail().ChiTiet(item.ID);
+                    if (giaTour != null)
+                    {
+                        <span>@giaTour.Gia</span>
+                    }
+                }
+            </td>
+            <td>
+                @if (@item.TrangThai == true)
+                {
+                    <p style="color:springgreen">Đã xác nhận</p>
+                }
+                else
+                {
+                    <p style="color:red">Đang xử lý</p>
+                }
+            </td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+@section script{
+    <script>
+        $(document).ready(function () {
+
+            var readURL = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.profile-pic').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $(".file-upload").on('change', function () {
+                readURL(this);
+            });
+
+            $(".upload-button").on('click', function () {
+                $(".file-upload").click();
+            });
+        });
+    </script>
+}
+

@@ -1,0 +1,16 @@
+﻿
+.search_input {
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.search_button {
+    border: solid;
+    padding: 5px 10px;
+    margin-left: 10px;
+    color: snow;
+    background: linear-gradient(to right, #FF6633, #3333FF);
+    border-radius: 20px;
+}

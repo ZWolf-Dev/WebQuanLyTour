@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Blog";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<!-- main Blog-->
+<div class="main">
+    <div class="main__slide_offers">
+        <div class="home_slide__item">
+            <div class="home_slide__background"
+                 style="background-image: url(/Content/styles/images/offers_slide.jpg)"></div>
+            <div class="home__content">
+                <div class="home__title animated bounceInDown">
+                    Tin tức
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--        blog-->
+    <div class="blog">
+        <div class="box blog__box">
+            <div class="blog__list">
+                @foreach (var item in new DuLich.Models.mapTinTuc().DanhSachPost())
+                {
+                    <div class="blog_post">
+                        <div class="blog_post_image">
+                            <img class="zoom_img" src="~/Data/imgBlog/@item.HinhAnh" alt="">
+                            <div class="blog_post_date"><span>@item.created_at</span></div>
+                        </div>
+                        <div class="blog_post_meta">
+                            <ul>
+                                <li class="blog_post_meta_item"><a href="#">@item.created_by</a></li>
+                                <li class="blog_post_meta_item"><a href="#">@item.DiaDiem</a></li>
+                                <li class="blog_post_meta_item"><a href="#">@item.LuotBinhLuan bình luận</a></li>
+                            </ul>
+                        </div>
+                        <div class="blog_post_title"><a href="#">@item.TieuDe</a></div>
+                        <div class="blog_post_text">
+                            <p>
+                                @Html.Raw(@item.BaiViet)
+                            </p>
+                        </div>
+                        <div class="blog_post_link"><a href="@item.Link">Xem tiếp...</a></div>
+                    </div>
+                }
+
+                </div>
+            <div class="blog__sidebar">
+                
+
+                <div class="sidebar_latest_posts">
+                    <div class="sidebar_title">Bài viết mới nhất</div>
+                    <div class="latest_posts">
+                        @foreach (var item in new DuLich.Models.mapTinTuc().DanhSachPage())
+                        {
+                            <div class="latest_post">
+                                <div class="latest_post_image"><img style="max-width:73px; max-height:73px;" src="~/Data/imgBlog/@item.HinhAnh" alt=""></div>
+                                <div class="latest_post_content">
+                                    <div class="latest_post_title"><a href="@item.Link">@item.TieuDe</a></div>
+                                    <div class="latest_post_meta">@item.created_by - @item.created_at</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+                <div class="sidebar_gallery">
+                    <div class="sidebar_title">Bộ sưu tập</div>
+                    <div class="gallery_content">
+                        <ul class="gallery_items">
+                            <li class="gallery_item">
+                                <a href="#">
+                                    <img class="imggg"
+                                         src="~/Data/imgBlog/gallery_1.jpg" alt="">
+                                </a>
+                            </li>
+                            <li class="gallery_item">
+                                <a href="#"><img src="~/Data/imgBlog/gallery_2.jpg" alt=""></a>
+                            </li>
+                            <li class="gallery_item">
+                                <a href="#"><img src="~/Data/imgBlog/gallery_3.jpg" alt=""></a>
+                            </li>
+                            <li class="gallery_item">
+                                <a href="#"><img src="~/Data/imgBlog/gallery_4.jpg" alt=""></a>
+                            </li>
+                            <li class="gallery_item">
+                                <a href="#"><img src="~/Data/imgBlog/gallery_5.jpg" alt=""></a>
+                            </li>
+                            <li class="gallery_item">
+                                <a href="#"><img src="~/Data/imgBlog/gallery_6.jpg" alt=""></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

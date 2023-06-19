@@ -1,0 +1,147 @@
+﻿@model DuLich.Models.TourDuLich
+
+
+
+<!-- Modal -->
+<div id="formThemTour" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="display:block">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm Tour Du Lịch</h4>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <h5>Tên tour</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Số ngày đi tour</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SoNgayDiTour, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                            @Html.ValidationMessageFor(model => model.SoNgayDiTour, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Ngày bắt đầu</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NgayBatDau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Ngày kết thúc</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NgayKetThuc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Lịch định kỳ</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LichDinhKy, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LichDinhKy, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Địa điểm</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DiaDiem, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaDiem, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Số người tối đa</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SoNguoiToiDa, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                            @Html.ValidationMessageFor(model => model.SoNguoiToiDa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Giá tour</h5>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.GiaTour, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                            @Html.ValidationMessageFor(model => model.GiaTour, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Bài Viết</h5>
+                        <div class="col-md-10">
+                            <textarea name="BaiViet" id="txtBaiViet" class="form-control">@Model.BaiViet</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Tỉnh</h5>
+                        <div class="col-md-10">
+                            <select name="idTinh" class="form-control">
+                                @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachTheoTen())
+                                {
+                                    <option value="@item.ID_Tinh">@item.Ten</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Loại tour</h5>
+                        <div class="col-md-10">
+                            <select name="idLoaiTour" class="form-control">
+                                @foreach (var item in new DuLich.Models.mapLoaiTour().DanhSachLoaiTour())
+                                {
+                                    <option value="@item.ID_LoaiTour">@item.LoaiTour1</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h5>Mức giá</h5>
+                        <div class="col-md-10">
+                            <select name="idMucGia" class="form-control">
+                                @foreach (var item in new DuLich.Models.mapMucGia().DanhSachMucGia())
+                                {
+                                    <option class="form-control" value="@item.ID_Gia">@item.MucGia</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-light" />
+                        </div>
+                    </div>
+                </div>
+                }
+                <script>
+                    CKEDITOR.replace("txtBaiViet")
+                </script>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

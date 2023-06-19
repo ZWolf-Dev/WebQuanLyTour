@@ -1,0 +1,22 @@
+﻿   <!--CTA-->
+<div class="main_cta" style="background-image: url(/Content/styles/images/cta.jpg)">
+    <div class="box main_cta__box">
+        <div class="slider" id="single_item">
+            @foreach (var item in new DuLich.Models.mapTinTuc().DanhSachCTA())
+            {
+        <div>
+            <div class="cta_item">
+                <div class="cta_item__title">@item.TieuDe</div>
+                <div class="cta_item__text">
+                    @item.BaiViet
+                </div>
+                <div class="button cta_button">
+                    <div class="button_bcg"></div>
+                    <a href="@item.Link">Xem thêm <span></span> <span></span> <span></span> <span></span></a>
+                </div>
+            </div>
+        </div>
+            }
+        </div>
+    </div>
+</div>

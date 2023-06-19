@@ -1,0 +1,149 @@
+<table border="0" cellpadding="0" cellspacing="0" width="600"
+       style="background-color:#ffffff;border:1px solid #dedede;border-radius:3px">
+    <tbody>
+        <tr>
+            <td align="center" valign="top">
+
+                <table border="0" cellpadding="0" cellspacing="0" width="100%"
+                       style="background-color:#96588a;color:#ffffff;border-bottom:0;font-weight:bold;line-height:100%;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;border-radius:3px 3px 0 0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:36px 48px;display:block">
+                                <h1 style="font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;font-size:30px;font-weight:300;line-height:150%;margin:0;text-align:left;color:#ffffff;background-color:inherit">
+                                    Cảm ơn bạn đã đặt tour
+                                </h1>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+
+                <table border="0" cellpadding="0" cellspacing="0" width="600">
+                    <tbody>
+                        <tr>
+                            <td valign="top" style="background-color:#ffffff">
+
+                                <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td valign="top" style="padding:48px 48px 32px">
+                                                <div style="color:#636363;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;font-size:14px;line-height:150%;text-align:left">
+
+                                                    <p style="margin:0 0 16px">Xin chào {{TenKhachHang}},</p>
+                                                    <p style="margin:0 0 16px">
+                                                        Cảm ơn đã đặt tour. Đơn hàng sẽ bị tạm
+                                                        giữ cho đến khi chúng  gọi điện xác nhận thanh toán hoàn thành. Trong
+                                                        thời gian chờ đợi, đây là thông tin đơn đặt tour của bạn:
+                                                    </p>
+
+
+                                                    <h2 style="color:#96588a;display:block;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;font-size:18px;font-weight:bold;line-height:130%;margin:0 0 18px;text-align:left">
+                                                        [Đơn hàng {{MaDatTour}}] (<b id="current-time"></b>)
+                                                    </h2>
+
+                                                    <div style="margin-bottom:40px">
+                                                        <table cellspacing="0" cellpadding="6" border="1" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;width:100%;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Tour</th>
+                                                                    <th scope="col" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Số lượng hành khách</th>
+                                                                    <th scope="col" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Giá</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;word-wrap:break-word">
+                                                                        {{TenTour}}
+                                                                    </td>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
+                                                                        {{SoLuongHanhKhach}}
+                                                                    </td>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
+                                                                        <span>{{GiaTour}}&nbsp;<span>VND</span></span>
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px">Ngày khởi hành:</th>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px"><span>{{NgayKhoiHanh}}</span></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Ngày trở về:</th>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{NgayTroVe}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Điểm đến:</th>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">
+                                                                        <span>{{DiaChiTha}}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Loại xe:</th>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{LoaiXe}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Phương thức thanh toán:</th>
+                                                                    <td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span>Chuyển khoản ngân hàn</span></td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+
+
+                                                    <table cellspacing="0" cellpadding="0" border="0"
+                                                           style="width:100%;vertical-align:top;margin-bottom:40px;padding:0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td valign="top" width="50%" style="text-align:left;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;border:0;padding:0">
+                                                                    <h2 style="color:#96588a;display:block;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;font-size:18px;font-weight:bold;line-height:130%;margin:0 0 18px;text-align:left">Thông tin khách hàng</h2>
+
+                                                                    <address style="padding:12px;color:#636363;border:1px solid #e5e5e5">
+                                                                        {{TenKhachHang}}<br><a href="tel:{{SoDienThoai}}" style="color:#96588a;font-weight:normal;text-decoration:underline" target="_blank">{{SoDienThoai}}</a><br><a href="{{Email}}" target="_blank">{{Email}}</a>
+                                                                    </address>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <p style="margin:0 0 16px">
+                                                        Chúng tôi đang tiến hành hoàn thiện đơn
+                                                        đặt tour của bạn. Nếu bạn cần thay đổi hoặc bổ xung thông tin, vui lòng liên hệ với chúng tôi qua:<br>
+                                                        SĐT: <a href="tel:039999999" style="color:#96588a;font-weight:normal;text-decoration:underline" target="_blank">039999999</a><br>
+                                                        Email: <a href="tieudaoviet8@gmail.com" target="_blank">tieudaoviet8@gmail.com</a><br>
+                                                        Chúng tôi sẻ gọi điện cho bạn để xác nhận đơn hàng trong thời gian sớm nhất.
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script>
+    var curDate = new Date();
+
+    // Ngày hiện tại
+    var curDay = curDate.getDate();
+
+    // Tháng hiện tại
+    var curMonth = curDate.getMonth() + 1;
+
+    // Năm hiện tại
+    var curYear = curDate.getFullYear();
+
+    // Gán vào thẻ HTML
+    document.getElementById('current-time').innerHTML = curDay + "/" + curMonth + "/" + curYear;
+</script>

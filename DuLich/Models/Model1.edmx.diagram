@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0a342d290f71476794b7dfe529b46239" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="DuLichDBModel.AlbumAnh" Width="1.5" PointX="5.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.CamNangDuLich" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.Gia" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.HinhAnh" Width="1.5" PointX="8" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.KieuTour" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.LoaiTour" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.Slider" Width="1.5" PointX="5.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.TaiKhoan" Width="1.5" PointX="9.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DuLichDBModel.Tour_KieuTour" Width="1.5" PointX="8" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="DuLichDBModel.FK_HinhAnh_AlbumAnh" ManuallyRouted="false" />
+        <AssociationConnector Association="DuLichDBModel.FK_Tour_KieuTour_KieuTour" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DuLichDBModel.ChucNang" Width="1.5" PointX="10.375" PointY="6" />
+        <EntityTypeShape EntityType="DuLichDBModel.PhanQuyen" Width="1.5" PointX="12.625" PointY="9" />
+        <AssociationConnector Association="DuLichDBModel.FK_PhanQuyen_ChucNang" />
+        <AssociationConnector Association="DuLichDBModel.FK_PhanQuyen_TaiKhoan" />
+        <EntityTypeShape EntityType="DuLichDBModel.KhachSan" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="DuLichDBModel.TinhThanh" Width="1.5" PointX="0.75" PointY="7.75" />
+        <AssociationConnector Association="DuLichDBModel.FK_KhachSan_TinhThanh" />
+        <EntityTypeShape EntityType="DuLichDBModel.LichTrinh" Width="1.5" PointX="12.375" PointY="0.875" />
+        <EntityTypeShape EntityType="DuLichDBModel.DichVu" Width="1.5" PointX="12.375" PointY="3.875" />
+        <EntityTypeShape EntityType="DuLichDBModel.DatTourDetail" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DuLichDBModel.PhuongTien" Width="1.5" PointX="12.375" PointY="11.75" />
+        <EntityTypeShape EntityType="DuLichDBModel.TourDuLich" Width="1.5" PointX="4" PointY="0.75" />
+        <AssociationConnector Association="DuLichDBModel.FK_TourDuLich_AlbumAnh" />
+        <AssociationConnector Association="DuLichDBModel.FK_DatTourDetail_TourDuLich" />
+        <AssociationConnector Association="DuLichDBModel.fk_id_gia" />
+        <AssociationConnector Association="DuLichDBModel.FK_TourDuLich_LichTrinh" />
+        <AssociationConnector Association="DuLichDBModel.fk_id_loai_tour" />
+        <AssociationConnector Association="DuLichDBModel.FK_Slider_TourDuLich" />
+        <AssociationConnector Association="DuLichDBModel.fk_id_tinh" />
+        <AssociationConnector Association="DuLichDBModel.FK_Tour_KieuTour_TourDuLich" />
+        <AssociationConnector Association="DuLichDBModel.Tour_DichVu" />
+        <EntityTypeShape EntityType="DuLichDBModel.TinTuc" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DuLichDBModel.DatTour" Width="1.5" PointX="12" PointY="14.75" />
+        <AssociationConnector Association="DuLichDBModel.FK_DatTour_TaiKhoan" />
+        <AssociationConnector Association="DuLichDBModel.FK_DatTourDetail_DatTour" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

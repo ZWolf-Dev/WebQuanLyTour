@@ -1,0 +1,20 @@
+﻿<div class="main_hotel">
+    <div class="box main_hotel__box">
+        <h2 class="main_hotel_title">Khách sạn được ưa thích nhất</h2>
+        <div class="hotel_items">
+            @foreach (var item in new DuLich.Models.mapKhachSan().DanhSach())
+            {
+                <div class="hotel_item">
+                    <div class="hotel_image">
+                        <img src="@item.HinhAnh" alt="">
+                    </div>
+                    <div class="hotel_content">
+                        <div class="hotel_title"><a href="#">@item.TenKhachSan</a></div>
+                        <div class="hotel_price">   @string.Format("{0:#,0}", item.GiaPhong) đ</div>
+                        <div class="hotel_location">@item.ViTri</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

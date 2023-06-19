@@ -1,0 +1,354 @@
+﻿@{var user = (DuLich.Models.TaiKhoan)System.Web.HttpContext.Current.Session["user"]; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    @*<title>@ViewBag.title??Null</title>*@
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="~/Content/plugin/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+
+    <script src="~/Content/js/jquery.3.2.1.min.js"></script>
+    <script src="~/Content/plugin/bootstrap-table/bootstrap-table.min.js"></script>
+
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="~/Areas/Admin/assets/img/icon.ico" type="image/x-icon" />
+    <!-- Fonts and icons -->
+    <script src="~/Areas/Admin/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Lato:300,400,700,900"] },
+            custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['~/Areas/Admin/assets/css/fonts.min.css'] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });</script>
+
+    <!-- CSS Files -->
+    <link href="~/Areas/Admin/assets/css/fonts.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Areas/Admin/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Areas/Admin/assets/css/atlantis.min.css">
+    <link rel="stylesheet" href="~/Areas/Admin/assets/css/demo.css">
+</head>
+<body data-background-color="dark">
+    <div class="main-header">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark2">
+
+            <a href="~/Home/Index" class="logo">
+                <img src="~/Areas/Admin/assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
+            </a>
+            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="icon-menu"></i>
+                </span>
+            </button>
+            <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <i class="icon-menu"></i>
+                </button>
+            </div>
+        </div>
+        <!-- End Logo Header -->
+        <!-- Navbar Header -->
+        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
+
+            <div class="container-fluid">
+                <div class="collapse" id="search-nav">
+                    <form class="navbar-left navbar-form nav-search mr-md-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button type="submit" class="btn btn-search pr-1">
+                                    <i class="fa fa-search search-icon"></i>
+                                </button>
+                            </div>
+                            <input type="text" placeholder="Search ..." class="form-control">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar sidebar-style-2" data-background-color="dark2">
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+            <div class="sidebar-content">
+                <div class="user">
+                    <div class="avatar-sm float-left mr-2">
+                        <img src=" @user.HinhAnh" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    <div class="info">
+                        <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                            <span>
+                                @user.TenHienThi
+                                <span class="user-level">
+                                   Administrator               
+                                </span>
+                                <span class="caret"></span>
+                            </span>
+                        </a>
+                        <div class="clearfix"></div>
+
+                        <div class="collapse in" id="collapseExample">
+                            <ul class="nav">
+                                <li>
+                                    <a href="/Admin/TaiKhoan/ChiTiet?tenDangNhap=@user.TenDangNhap">
+                                        <span class="link-collapse">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#edit">
+                                        <span class="link-collapse">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#settings">
+                                        <span class="link-collapse">Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/TaiKhoan/DangXuat">
+                                        <span class="link-collapse">Đăng xuất</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-primary">
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#base">
+                            <i class="fas fa-layer-group"></i>
+                            <p>Tour Du Lịch</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="base">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="~/Admin/TinhThanh/DanhSach">
+                                        <span class="sub-item">Tỉnh thành</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/LoaiTour/DanhSach">
+                                        <span class="sub-item">Loại tour</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/MucGia/DanhSach">
+                                        <span class="sub-item">Mức giá</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/Tour/DanhSach">
+                                        <span class="sub-item">Tour</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#sidebarLayouts">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>Tài Khoản</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="sidebarLayouts">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="~/Admin/TaiKhoan/DanhSach">
+                                        <span class="sub-item">Danh Sách Tài Khoản</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#forms">
+                            <i class="fas fa-pen-square"></i>
+                            <p>Album</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="forms">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="~/Admin/Album/DanhSach">
+                                        <span class="sub-item">Album Ảnh</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#tables">
+                            <i class="fas fa-table"></i>
+                            <p>Slider</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="tables">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="~/Admin/Slider/DanhSach">
+                                        <span class="sub-item">Danh Sách Slider</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#maps">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Maps</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="maps">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="maps/jqvmap.html">
+                                        <span class="sub-item">JQVMap</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#charts">
+                            <i class="far fa-chart-bar"></i>
+                            <p>Charts</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="charts">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a href="charts/charts.html">
+                                        <span class="sub-item">Chart Js</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="charts/sparkline.html">
+                                        <span class="sub-item">Sparkline</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="widgets.html">
+                            <i class="fas fa-desktop"></i>
+                            <p>Widgets</p>
+                            <span class="badge badge-success">4</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="collapse" href="#submenu">
+                            <i class="fas fa-bars"></i>
+                            <p>Menu Levels</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse" id="submenu">
+                            <ul class="nav nav-collapse">
+                                <li>
+                                    <a data-toggle="collapse" href="#subnav1">
+                                        <span class="sub-item">Level 1</span>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <div class="collapse" id="subnav1">
+                                        <ul class="nav nav-collapse subnav">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="sub-item">Level 2</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="sub-item">Level 2</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" href="#subnav2">
+                                        <span class="sub-item">Level 1</span>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <div class="collapse" id="subnav2">
+                                        <ul class="nav nav-collapse subnav">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="sub-item">Level 2</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="sub-item">Level 1</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <div class="content">
+            <div class="page-inner mt--5">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!--   Core JS Files   -->
+    <script src="~/Areas/Admin/assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/core/popper.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="~/Areas/Admin/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="~/Areas/Admin/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Areas/Admin/assets/js/table2excel.js"></script>
+
+    <!-- Chart JS -->
+    <script src="~/Areas/Admin/assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="~/Areas/Admin/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="~/Areas/Admin/assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/Areas/Admin/assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="~/Areas/Admin/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="~/Areas/Admin/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Areas/Admin/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="~/Areas/Admin/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Atlantis JS -->
+    <script src="~/Areas/Admin/assets/js/atlantis.min.js"></script>
+
+    <script>
+    </script>
+
+    @RenderSection("script", false)
+</body>
+</html>

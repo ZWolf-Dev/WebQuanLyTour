@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33328.57
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuLich", "DuLich\DuLich.csproj", "{E2A803CA-C045-4165-B67E-A1445EA89552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{56EE080E-CE0A-4F72-9AC3-268112A54ECA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2A803CA-C045-4165-B67E-A1445EA89552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A803CA-C045-4165-B67E-A1445EA89552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A803CA-C045-4165-B67E-A1445EA89552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A803CA-C045-4165-B67E-A1445EA89552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56EE080E-CE0A-4F72-9AC3-268112A54ECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56EE080E-CE0A-4F72-9AC3-268112A54ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56EE080E-CE0A-4F72-9AC3-268112A54ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56EE080E-CE0A-4F72-9AC3-268112A54ECA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {636972C4-0A22-4E77-8079-30F01278FA26}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,75 @@
+﻿@model List<DuLich.Models.TourDuLich>
+@{
+    ViewBag.Title = "Tiêu Dao Việt";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+<link href="~/Content/styles/css/menudropdown.css" rel="stylesheet" />
+
+@section meta{
+    @*og:locale: Quốc gia sử dụng*@
+    <meta property="og:locale" content="vi_VN" />
+    @*revisit: Quy định tg mà công cụ tìm kiếm trích suất dữ liệu*@
+    <meta property="revisit" content="1 day" />
+    @*og:type: Xác định loại ứng dụng*@
+    <meta property="og:type" content="website" />
+}
+
+<!-- main -->
+<div class="main">
+    <!--Slider-->
+    @Html.Action("Slider", "Home", new { })
+
+    <!-- Search -->
+    @Html.Action("Search", "Home", new { })
+
+    <!--Intro-->
+    @Html.Action("TourTotNhat", "Home", new { })
+
+    <!--CTA-->
+    @Html.Action("CTA", "Home", new { })
+
+    <!--Offers-->
+    @Html.Action("TourUuDai", "Home", new { })
+
+    <!--Hotel-->
+    @Html.Action("Hotel", "Home", new { })
+</div>
+
+
+@section script{
+    <script>
+        //$.alert({
+        //    title: 'Xin chào!',
+        //    content: 'Chào mừng bạn đến với website!',
+        //});
+
+        //$.confirm({
+        //    title: 'Bạn có muốn xóa ko!',
+        //    content: 'Nếu xóa thì ko thể khôi phục!',
+        //    buttons: {
+        //        Xóa: function () {
+        //            $.alert('Đã xóa!');
+        //        },
+        //        Hủy: function () {
+        //            $.alert('Đã hủy!');
+        //        },
+        //        somethingElse: {
+        //            text: 'Something else',
+        //            btnClass: 'btn-blue',
+        //            keys: ['enter', 'shift'],
+        //            action: function () {
+        //                $.alert('Something else?');
+        //            }
+        //        }
+        //    }
+        //});
+
+        $.toast({
+            heading: 'Information',
+            text: 'Chào mừng bạn đến với website!',
+            icon: 'error',
+            loader: true,        // Change it to false to disable loader
+            loaderBg: '#8d4fff'  // To change the background
+        })
+    </script>
+}

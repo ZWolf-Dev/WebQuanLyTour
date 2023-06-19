@@ -1,0 +1,40 @@
+﻿@model DuLich.Models.Slider
+
+@{
+    ViewBag.Title = "CapNhat";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Slider</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID_Slider)
+
+                <div class="form-group">
+                    <label>Tên tour</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <hr />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-light" />
+                    </div>
+                </div>
+            </div>
+        }
+        <script>
+            CKEDITOR.replace("txtBaiViet")
+        </script>
+    </div>
+</div>

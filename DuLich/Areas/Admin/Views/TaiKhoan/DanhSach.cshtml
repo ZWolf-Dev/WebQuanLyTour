@@ -1,0 +1,119 @@
+﻿@model IEnumerable<DuLich.Models.TaiKhoan>
+
+@{
+    ViewBag.Title = "Danh Sách Tài Khoản";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+}
+
+<div class="row" style="margin-top:50px">
+    <div class="col-md-12">
+        <p>
+            DANH SACH TÀI KHOẢN
+            <br />
+            <button type="button" class="btn btn-info btn-sm" onclick="LoadForm()"> <i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp&nbspThêm mới</button>
+            <button type="button" class="btn btn-success btn-sm pull-right" onclick="ExportExcel('tableTK','Danh sach tai khoan')"> <i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp&nbspExport</button>
+            <a href="/Admin/TaiKhoan/Import" class="btn btn-sm pull-right btn-warning pull-right" )">Inport</a>
+        </p>
+        <table class="table table-bordered" id="tableTK" style="color:unset">
+            <tr>
+                <th>
+                    Tên đăng nhập
+                </th>
+                <th>
+                    Tên hiên thị
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th>
+                    Hình Ảnh
+                </th>
+                <th>#</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="~/Admin/TaiKhoan/ChiTiet?tenDangNhap=@item.TenDangNhap">
+                            @item.TenDangNhap
+                        </a>
+                    </td>
+                    <td>
+                        @item.TenHienThi
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.SoDienThoai
+                    </td>
+                    <td>
+                        @if (@item.Active == true)
+                        {
+                            <p>Mở</p>
+                        }
+                        else
+                        {
+                            <p>Khóa</p>
+                        }
+                    </td>
+                    <td>
+                        <a href="~/Admin/TaiKhoan/CapNhatAnh?tenDangNhap=@item.TenDangNhap"><img src="@item.HinhAnh" style="height:100px; width:100px" /></a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-icon btn-round btn-success btn-xs" onclick="CapNhat()">
+                            <i class="fas fa-pen-square"></i>
+                        </button>
+                        <script>
+                            function CapNhat() {
+                                $("#formBox").load("/Admin/TaiKhoan/CapNhat?tenDangNhap=@item.TenDangNhap", function () {
+                                    $("#formCapNhatTaiKhoan").modal("show");
+                                });
+                            }
+                        </script>
+                        <button type="button" class="btn btn-icon btn-round btn-danger btn-xs" onclick="if (confirm('Có muốn xóa không?')) { location.href='/Admin/TaiKhoan/Xoa?tenDangNhap=@item.TenDangNhap' }">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+<div id="formBox">
+
+</div>
+@section script{
+    <script>
+        function ExportExcel(idTable, fileName) {
+            $("#" + idTable).table2excel({
+                exclude: "",
+                name: "Worksheet Name",
+                filename: fileName + ".xls",
+                preserveColors: false
+            });
+        }
+        function LoadForm() {
+            $("#formBox").load("/Admin/TaiKhoan/ThemMoi", function () {
+                $("#formThemTaiKhoan").modal("show");
+            });
+        }
+    </script>
+    @*<script>
+        $("#tableTK").table2excel({
+            exclude: "",
+            name: "Worksheet Name",
+            filename: "Export.xls",
+            preserveColors: false
+        });
+    </script>*@
+}
+

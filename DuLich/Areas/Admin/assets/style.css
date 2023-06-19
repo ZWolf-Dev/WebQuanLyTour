@@ -1,0 +1,433 @@
+
+.block-breadcrumb{	
+    background: #f2f5f8;
+    padding: 9px 0;
+    margin-bottom: 40px;
+    border-bottom: solid 1px #ffffff;
+}
+.block-breadcrumb .col{
+	padding-bottom: 0;
+}
+.breadcrumb ul li {
+    padding: 0;
+    margin: 0 10px;
+    float: left;
+    position: relative;
+    color: #666666;
+    font-size: 13px;
+    line-height: 21px;
+}
+.breadcrumb a, .breadcrumb span{
+	font-size: 13px;
+}
+.tour-title {
+	font-size: 28px;
+	line-height: 1.3em;
+	font-weight: bold;
+	color: #333;
+}
+.boxDesign1 {
+    border: solid 1px rgba(0,0,0,0.15);
+    padding: 15px;
+    margin-bottom: 25px;
+}
+.boxDesign1 .name {
+    font-size: 15px;
+    line-height: 24px;
+    color: #ff9c00;
+    font-weight: bold;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px rgba(0,0,0,0.15);
+}
+.boxDesign1 .attr ul{
+	list-style: none;
+	padding: 0;
+	margin-bottom: 0;
+}
+.boxDesign1 .attr ul li:last-child{
+	border-bottom:0;
+	margin-bottom:0;
+	padding-bottom: 0;
+}
+.boxDesign1 .attr ul li {
+	  overflow: hidden;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 1px rgba(0,0,0,0.15);
+}
+.boxDesign1 .attr .at {
+    width: 100px;
+    float: left;
+    font-weight: bold;
+		font-size: 14px;
+		color: #333;
+}
+.boxDesign1 .attr .as{
+	font-size: 14px;
+	color: #333;
+	overflow: hidden
+}
+.boxPrice {
+    border: solid 1px #ff9c00;
+    margin-bottom: 25px;
+}
+.boxPrice .price {
+    background: #ff9c00;
+    color: #ffffff;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.boxPrice .bot {
+    padding: 15px;
+    background: #ff9c00;
+}
+    .boxPrice .bot a {
+        width: 100%;
+        height: 40px;
+        display: block;
+        position: absolute;
+        top: 0;
+        background: linear-gradient(to right, #FF6633, #3333FF, #FF6633);
+        color: #ffffff;
+        border: none;
+        text-align: center;
+        line-height: 40px;
+        text-transform: uppercase;
+        font-weight: bold;
+        -webkit-transition: all 0.3s linear;
+        -o-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+        border-radius: 5px;
+    }
+.boxPrice .price .txt {
+    font-weight: bold;
+    margin-right: 5px;
+}
+.boxPrice .price .red {
+    font-size: 25px;
+    line-height: 33px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.boxPrice .price .nor {
+    text-decoration: line-through;
+}
+.boxDesign2 {
+    background: #f3f3f3;
+}
+.boxDesign2 ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.boxDesign2 ul li {
+    border-bottom: solid 1px #ffffff;
+}
+.boxDesign2 ul li a {
+    padding: 9px 10px;
+    display: block;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: bold;
+		color: #333;
+}
+.boxDesign2 ul li a i {
+    margin-right: 25px;
+	font-size: 16px;
+    position: relative;
+}
+.boxDesign2 ul li a:hover {    
+		color: #ff9c00;
+}
+.block-detail-tour{
+	margin-bottom: 40px;
+}
+.block-detail-tour .block-detail-title {
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #666666;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px rgba(0,0,0,0.15);
+}
+.block-detail-tour-content{
+	font-size: 14px;
+	color: #666;
+	line-height: 1.5em;
+}
+.block-detail-tour-content ul {
+    list-style: disc;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+.box-tour-gallery{
+	margin-bottom: 40px;
+}
+
+.book-tour-info {
+    overflow: hidden;
+    border: solid 1px rgba(0,0,0,.15);
+}
+.book-tour-info h2 {
+    padding: 15px 20px;
+    border-bottom: solid 1px rgba(0,0,0,.15);
+    font-size: 18px;
+}
+.book-tour-info .mda-info-list {
+    padding: 15px 20px 10px;
+}
+.book-tour-info  .mda-info-list .mda-row {
+    padding-left: 150px;
+    margin-bottom: 5px;
+    position: relative;
+    font-size: 14px;
+}
+.book-tour-info .mda-info-list .mda-row .be {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.block-dat-tour h2{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.block-dat-tour .col{
+    padding-bottom: 0;
+}
+.block-dat-tour .wpcf7-not-valid-tip{
+    font-size: 13px;
+}
+.block-dat-tour .wpcf7-submit{
+    margin: 0 auto;
+    display: block;
+    background-color: #ff9c00 !important 
+}
+.hotel{
+    position: relative;
+}
+.hotel .img {
+    padding-top: 66%;
+    position: relative;
+    overflow: hidden;
+}
+.hotel .img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+.hotel .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    z-index: 2;
+    pointer-events: none;
+}
+.hotel .ratting {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.hotel .ratting i {
+    color: #fb0;
+}
+.hotel .tend h3 {
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+.hotel .price {
+    text-align: center;
+    color: #bbb;
+}
+.hotel .price span {
+    color: #fff100;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+}
+.hotel .img:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75%;
+    background: -moz-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.65) 100%);
+    background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.65) 100%);
+    background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.65) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+.vnt-attr {
+    padding: 15px 30px;
+    background: #f3f3f3;
+    margin-bottom: 20px;
+}
+.vnt-attr ul {
+    margin-bottom: 10px;
+    list-style: none;
+    padding-left: 0
+}
+.vnt-attr ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: top 5px left;
+    background-size: 14px;
+}
+.vnt-attr .at{
+    width: 100px;
+    float: left;
+    font-size: 15px
+}
+.vnt-attr .as{
+    overflow: hidden;
+
+}
+.vnt-attr .as i{
+    font-size: 13.5px;
+}
+.vnt-attr ul li.v2 {
+    background-image: url(assets/img/i-2.svg);
+}
+.vnt-attr ul li.v1 {
+    background-image: url(assets/img/i-1.svg);
+    font-size: 14px
+}
+.vnt-attr .facilities ul {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 0;
+}
+.vnt-attr .facilities ul li{
+    margin-bottom: 0
+}
+.vnt-attr .facilities .facihotel11 {
+    background-image: url(assets/img/breakfast-time.svg);
+}
+.vnt-attr .facilities .facihotel16 {
+    background-image: url(assets/img/tub-with-two-holes.svg);
+}
+.vnt-attr .facilities .facihotel25 {
+    background-image: url(assets/img/signal-bars.svg);
+}
+.vnt-attr .facilities .facihotel34 {
+    background-image: url(assets/img/sedan-car-model.svg);
+}
+.vnt-attr ul li.v4 {
+    background-image: url(assets/img/i-4.svg);
+}
+.vnt-attr .link-contact {
+    display: block;
+    text-align: center;
+    background: #ff9c00;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 9px 10px;
+}
+.triphighlights {
+    font-weight: 700;
+    width: 100%;
+    background: #f2f5f8;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-style: italic;
+}
+.triphighlights p{
+    margin-bottom: 0
+}
+.chi-tiet-khach-san {
+    background: #fff!important;
+    width: 100%;
+    background: #f2f5f8;
+    border-radius: 0px;
+    margin-bottom: 15px;
+
+}
+.chi-tiet-khach-san td {
+    vertical-align: top;
+    font-size: 14px;
+    padding: 10px 5px;
+}
+#hotel-tabs .nav{
+    text-align: center;
+    display: block;
+    margin-top: 30px;
+}
+#hotel-tabs .tab-panels{
+    padding: 25px;
+    background: #f3f3f3;
+}
+#hotel-tabs .nav li a{
+    display: block;
+    padding: 15px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #666;
+    position: relative;
+}
+#hotel-tabs .entry-content{
+    font-size: 14px
+}
+#hotel-tabs .nav li.active a:after, #hotel-tabs .nav li.active a:before {
+    right: 0;
+}
+#hotel-tabs .nav li a:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+    border-bottom: solid 2px #ed0080;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+#hotel-tabs .nav li a:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100%;
+    border-bottom: solid 2px #ed0080;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    transition: all .3s linear;
+}
+.wpmm_item_description{
+	display: none;
+}
+@media screen and (max-width: 520px)  {
+	.box-search-tour .box{ width: 100%}
+	.search-tour{
+		margin-top: -100%;
+	}
+}

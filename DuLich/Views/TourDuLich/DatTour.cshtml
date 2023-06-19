@@ -1,0 +1,327 @@
+﻿@model DuLich.Models.TourDuLich
+@{
+    ViewBag.Title = "Dặt Tour";
+    Layout = "~/Views/Shared/layout.cshtml";
+    int? NguoiLon = ViewBag.nguoilon;
+    int? TreEm = ViewBag.treem;
+    string PhuongTien = ViewBag.PhuongTien;
+}
+
+@{ var user = (DuLich.Models.TaiKhoan)System.Web.HttpContext.Current.Session["userhome"]; }
+<script src="https://cdn02.jotfor.ms/static/prototype.forms.js?3.3.40639" type="text/javascript"></script>
+<script src="https://cdn03.jotfor.ms/static/jotform.forms.js?3.3.40639" type="text/javascript"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/punycode/1.4.1/punycode.js"></script>
+<script type="text/javascript">
+    JotForm.newDefaultTheme = false;
+    JotForm.extendsNewTheme = false;
+    JotForm.singleProduct = false;
+    JotForm.newPaymentUIForNewCreatedForms = false;
+    JotForm.submitError = "jumpToFirstError";
+
+    JotForm.init(function () {
+        /*INIT-START*/
+        setTimeout(function () {
+            $('input_30').hint('ex: myname@example.com');
+        }, 20);
+
+        JotForm.calendarMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        JotForm.calendarDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        JotForm.calendarOther = { "today": "Today" };
+        var languageOptions = document.querySelectorAll('#langList li');
+        for (var langIndex = 0; langIndex < languageOptions.length; langIndex++) {
+            languageOptions[langIndex].on('click', function (e) { setTimeout(function () { JotForm.setCalendar("15", false, { "days": { "monday": true, "tuesday": true, "wednesday": true, "thursday": true, "friday": true, "saturday": true, "sunday": true }, "future": true, "past": true, "custom": false, "ranges": false, "start": "", "end": "" }); }, 0); });
+        }
+        JotForm.onTranslationsFetch(function () { JotForm.setCalendar("15", false, { "days": { "monday": true, "tuesday": true, "wednesday": true, "thursday": true, "friday": true, "saturday": true, "sunday": true }, "future": true, "past": true, "custom": false, "ranges": false, "start": "", "end": "" }); });
+        JotForm.formatDate({ date: (new Date()), dateField: $("id_" + 15) });
+        JotForm.displayLocalTime("hour_15", "min_15", "ampm_15", null, false);
+
+        JotForm.calendarMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        JotForm.calendarDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        JotForm.calendarOther = { "today": "Today" };
+        var languageOptions = document.querySelectorAll('#langList li');
+        for (var langIndex = 0; langIndex < languageOptions.length; langIndex++) {
+            languageOptions[langIndex].on('click', function (e) { setTimeout(function () { JotForm.setCalendar("35", false, { "days": { "monday": true, "tuesday": true, "wednesday": true, "thursday": true, "friday": true, "saturday": true, "sunday": true }, "future": true, "past": true, "custom": false, "ranges": false, "start": "", "end": "" }); }, 0); });
+        }
+        JotForm.onTranslationsFetch(function () { JotForm.setCalendar("35", false, { "days": { "monday": true, "tuesday": true, "wednesday": true, "thursday": true, "friday": true, "saturday": true, "sunday": true }, "future": true, "past": true, "custom": false, "ranges": false, "start": "", "end": "" }); });
+        JotForm.formatDate({ date: (new Date()), dateField: $("id_" + 35) });
+        JotForm.displayLocalTime("hour_35", "min_35", "ampm_35", null, false);
+        if (window.JotForm && JotForm.accessible) $('input_11').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_33').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_12').setAttribute('tabindex', 0);
+        if (typeof $('input_32').spinner !== 'undefined') { $('input_32').spinner({ imgPath: 'https://cdn.jotfor.ms/images/', width: '60', maxValue: '', minValue: '', allowNegative: false, addAmount: 1, value: '0' }); }
+        $('input_32').up(2).setAttribute('tabindex', '');
+        if (window.JotForm && JotForm.accessible) $('input_24').setAttribute('tabindex', 0);
+        if (window.JotForm && JotForm.accessible) $('input_41').setAttribute('tabindex', 0);
+        /*INIT-END*/
+    });
+
+    JotForm.prepareCalculationsOnTheFly([null, { "name": "submit", "qid": "1", "text": "Submit Your Booking", "type": "control_button" }, null, null, null, null, null, null, null, null, null, { "name": "pickupAddress", "qid": "11", "text": "Pickup Address (Airport Or Hotel) ", "type": "control_textarea" }, { "name": "createYour", "qid": "12", "subLabel": "Here you can create your own tour with destinations and duration what you are going to stay. you can book your reservation as your wish after create tour", "text": "Create Your own Customize Tour", "type": "control_textarea" }, null, null, { "name": "departureDatetime", "qid": "15", "text": "Departure Date\u002FTime  (approximately)", "type": "control_datetime" }, null, null, null, { "name": "vehicleType", "qid": "19", "subLabel": "Include with English speaking chauffeur. (French speaking guide if necessary)  ", "text": "Vehicle Type", "type": "control_dropdown" }, null, null, null, null, { "name": "additionalMessage", "qid": "24", "text": "Additional Message:", "type": "control_textarea" }, null, null, { "name": "tourBooking", "qid": "27", "text": "Tour Booking Form", "type": "control_head" }, null, { "name": "fullName29", "qid": "29", "text": "Full Name", "type": "control_fullname" }, { "name": "email30", "qid": "30", "text": "E-mail", "type": "control_email" }, { "name": "phoneNumber31", "qid": "31", "text": "Phone Number", "type": "control_phone" }, { "name": "numberOf32", "qid": "32", "text": "Number of Passengers", "type": "control_spinner" }, { "name": "dropAddress", "qid": "33", "text": "Drop Address (Airport Or Hotel) ", "type": "control_textarea" }, { "name": "image", "qid": "34", "text": "Capture.5c5165df3e2f34.16676747", "type": "control_image" }, { "name": "returnDatetime", "qid": "35", "text": "Return Date\u002FTime (approximately)", "type": "control_datetime" }, null, { "name": "b15c523d1d4e482520090493", "qid": "37", "text": "car1.5c89fb94ef4fa6.30393173", "type": "control_image" }, null, null, { "name": "tourCode", "qid": "40", "text": "Tour Code", "type": "control_dropdown" }, { "name": "couponCode", "qid": "41", "subLabel": "Enter here coupon code for 10 %  off for your tour", "text": "Coupon Code", "type": "control_textbox" }]);
+    setTimeout(function () {
+        JotForm.paymentExtrasOnTheFly([null, { "name": "submit", "qid": "1", "text": "Submit Your Booking", "type": "control_button" }, null, null, null, null, null, null, null, null, null, { "name": "pickupAddress", "qid": "11", "text": "Pickup Address (Airport Or Hotel) ", "type": "control_textarea" }, { "name": "createYour", "qid": "12", "subLabel": "Here you can create your own tour with destinations and duration what you are going to stay. you can book your reservation as your wish after create tour", "text": "Create Your own Customize Tour", "type": "control_textarea" }, null, null, { "name": "departureDatetime", "qid": "15", "text": "Departure Date\u002FTime  (approximately)", "type": "control_datetime" }, null, null, null, { "name": "vehicleType", "qid": "19", "subLabel": "Include with English speaking chauffeur. (French speaking guide if necessary)  ", "text": "Vehicle Type", "type": "control_dropdown" }, null, null, null, null, { "name": "additionalMessage", "qid": "24", "text": "Additional Message:", "type": "control_textarea" }, null, null, { "name": "tourBooking", "qid": "27", "text": "Tour Booking Form", "type": "control_head" }, null, { "name": "fullName29", "qid": "29", "text": "Full Name", "type": "control_fullname" }, { "name": "email30", "qid": "30", "text": "E-mail", "type": "control_email" }, { "name": "phoneNumber31", "qid": "31", "text": "Phone Number", "type": "control_phone" }, { "name": "numberOf32", "qid": "32", "text": "Number of Passengers", "type": "control_spinner" }, { "name": "dropAddress", "qid": "33", "text": "Drop Address (Airport Or Hotel) ", "type": "control_textarea" }, { "name": "image", "qid": "34", "text": "Capture.5c5165df3e2f34.16676747", "type": "control_image" }, { "name": "returnDatetime", "qid": "35", "text": "Return Date\u002FTime (approximately)", "type": "control_datetime" }, null, { "name": "b15c523d1d4e482520090493", "qid": "37", "text": "car1.5c89fb94ef4fa6.30393173", "type": "control_image" }, null, null, { "name": "tourCode", "qid": "40", "text": "Tour Code", "type": "control_dropdown" }, { "name": "couponCode", "qid": "41", "subLabel": "Enter here coupon code for 10 %  off for your tour", "text": "Coupon Code", "type": "control_textbox" }]);
+    }, 20);
+</script>
+
+<script src="~/Content/styles/js/book-tour.js"></script>
+<link href="~/Content/styles/css/formCss.css" rel="stylesheet" />
+<link href="~/Content/styles/css/form-book-tour.css" rel="stylesheet" />
+<link href="~/Content/styles/css/book-tour.css" rel="stylesheet" />
+<style>
+    #row {
+        background-image: url("/Data/Image/maxresdefault.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+<div id="row" style="padding-top:10vw">
+    @using (Html.BeginForm("DatTour", "TourDuLich", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="tenDangNhap" value="@user.TenDangNhap" />
+        <input type="hidden" name="idTour" value="@Model.ID" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-header-group  header-large">
+            <div class="header-text httal htvam">
+                <h1 class="form-header" data-component="header" style="text-align:center">Book Tour</h1>
+            </div>
+        </div>
+
+        <ul style=" float: left; max-width: 50%;">
+            <li class="form-line jf-required" data-type="control_fullname">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    Họ và tên
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <div data-wrapper-react="true">
+                        <span class="form-sub-label-container" style="vertical-align:top" data-input-type="first">
+                            <input name="firstName" type="text" class="form-textbox" required="" />
+                            <label style=" color: darkorange" class="form-sub-label" aria-hidden="false">
+                                First Name
+                            </label>
+                        </span>
+                        <span class="form-sub-label-container" style="vertical-align:top" data-input-type="last">
+                            <input name="lastName" type="text" class="form-textbox" required="" />
+                            <label style=" color: darkorange" class="form-sub-label" aria-hidden="false">
+                                Last Name
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_email">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    E-mail
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <input name="email" type="email" value="@user.Email" class="form-textbox" required="" />
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_phone">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    Số điện thoại
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <input name="soDienThoai" type="number" value="@user.SoDienThoai" class="form-textbox" required="" />
+                </div>
+            </li>
+
+            <li class="form-line jf-required" data-type="control_datetime" id="id_15">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto" id="label_15" for="day_15">
+                    Ngày/giờ khởi hành (khoảng)
+                    <span class="form-required">*</span>
+                </label>
+                <div id="cid_15" class="form-input jf-required">
+                    <div data-wrapper-react="true" class="extended notLiteMode">
+                        <span class="form-sub-label-container" style="vertical-align:top">
+                            <input type="tel" class="currentDate form-textbox validate[required, limitDate]" id="day_15" name="dayKH" size="2" data-maxlength="2" data-age="" maxLength="2" value="02" required="" autoComplete="off" aria-labelledby="label_15 sublabel_15_day" />
+                            <span class="date-separate" aria-hidden="true">-</span>
+                            <label style=" color: darkorange" class="form-sub-label" for="day_15" id="sublabel_15_day" aria-hidden="false">
+                                Day
+                            </label>
+                        </span><span class="form-sub-label-container" style="vertical-align:top">
+                            <input type="tel" class="form-textbox validate[required, limitDate]" id="month_15" name="monthKH" size="2" data-maxlength="2" data-age="" maxLength="2" value="04" required="" autoComplete="off" aria-labelledby="label_15 sublabel_15_month" />
+                            <span class="date-separate" aria-hidden="true">-</span>
+                            <label style=" color: darkorange" class="form-sub-label" for="month_15" id="sublabel_15_month" aria-hidden="false">
+                                Month
+                            </label>
+                        </span>
+                        <span class="form-sub-label-container" style="vertical-align:top">
+                            <input type="tel" class="form-textbox validate[required, limitDate]" id="year_15" name="yearKH" size="4" data-maxlength="4" data-age="" maxLength="4" value="2023" required="" autoComplete="off" aria-labelledby="label_15 sublabel_15_year" />
+                            <label style=" color: darkorange" class="form-sub-label" for="year_15" id="sublabel_15_year" aria-hidden="false">
+                                Year
+                            </label>
+                        </span>
+                        <span class="form-sub-label-container" style="vertical-align:top">
+                            <img class=" newDefaultTheme-dateIcon icon-seperatedMode" alt="Pick a Date" id="input_15_pick" src="https://cdn.jotfor.ms/images/calendar.png" data-component="datetime" aria-hidden="true" data-allow-time="No" data-version="v1" />
+                        </span>
+                        <label style=" color: red" class="form-sub-label" aria-hidden="false">
+                            Thay đổi ngày giá sẻ tăng hoặc giảm.
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_datetime" id="id_35">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto" id="label_35" for="day_35">
+                    Ngày/Giờ trở về (xấp xỉ)
+                    <span class="form-required">*</span>
+                </label>
+                <div id="cid_35" class="form-input jf-required">
+                    <div data-wrapper-react="true" class="extended notLiteMode">
+                        <span class="form-sub-label-container" style="vertical-align:top">
+                            <input type="tel" class="currentDate form-textbox validate[required, limitDate]" id="day_35" name="dayTV" size="2" data-maxlength="2" data-age="" maxLength="2" value="02" required="" autoComplete="off" aria-labelledby="label_35 sublabel_35_day" />
+                            <span class="date-separate" aria-hidden="true">-</span>
+                            <label style=" color: darkorange" class="form-sub-label" for="day_35" id="sublabel_35_day" aria-hidden="false">
+                                Day
+                            </label>
+                        </span>
+                        <span class="form-sub-label-container" style="vertical-align:top">
+                            <input type="tel" class="form-textbox validate[required, limitDate]" id="month_35" name="monthTV" size="2" data-maxlength="2" data-age="" maxLength="2" value="04" required="" autoComplete="off" aria-labelledby="label_35 sublabel_35_month" />
+                            <span class="date-separate" aria-hidden="true">-</span>
+                            <label style=" color: darkorange" class="form-sub-label" for="month_35" id="sublabel_35_month" aria-hidden="false">
+                                Month
+                            </label>
+                        </span>
+                        <span class="form-sub-label-container" style="vertical-align:top">
+                            <input type="tel" class="form-textbox validate[required, limitDate]" id="year_35" name="yearTV" size="4" data-maxlength="4" data-age="" maxLength="4" value="2023" required="" autoComplete="off" aria-labelledby="label_35 sublabel_35_year" />
+                            <label style=" color: darkorange" class="form-sub-label" for="year_35" id="sublabel_35_year" aria-hidden="false">
+                                Year
+                            </label>
+                        </span>
+                        <span class="form-sub-label-container" style="vertical-align:top">
+                            <img class=" newDefaultTheme-dateIcon icon-seperatedMode" alt="Pick a Date" id="input_35_pick" src="https://cdn.jotfor.ms/images/calendar.png" data-component="datetime" aria-hidden="true" data-allow-time="No" data-version="v1" />
+                        </span>
+                        <label style=" color: red" class="form-sub-label" aria-hidden="false">
+                            Thay đổi ngày giá sẻ tăng hoặc giảm.
+                        </label>
+                    </div>
+                </div>
+            </li>
+
+            <li class="form-line jf-required" data-type="control_textarea">
+                <label style="color: darkorange" class="form-label form-label-left form-label-auto">
+                    Địa chỉ đón (Sân bay hoặc Khách sạn)
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <textarea style="height: 124px" name="diaChiDon" class="form-textarea" value="" required=""></textarea>
+                </div>
+            </li>
+        </ul>
+
+        <ul style=" float: right; max-width: 50%;">
+            <li class="form-line jf-required" data-type="control_textarea">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    Địa chỉ thả (Sân bay hoặc khách sạn)
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <textarea name="diaChiTha" class="form-textarea" value="" required=""></textarea>
+                </div>
+            </li>
+            <li class="form-line" data-type="control_textarea">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    Tạo chuyến tham quan tùy chỉnh của riêng bạn
+                </label>
+                <div class="form-input">
+                    <span class="form-sub-label-container" style="vertical-align:top">
+                        <textarea name="tourTuyChinh" class="form-textarea"></textarea>
+                        <label style=" color: darkorange" class="form-sub-label" aria-hidden="false">
+                            Tại đây bạn có thể tạo tour du lịch của riêng mình với các điểm đến và thời gian bạn sẽ ở lại. Bạn có thể đặt chỗ theo ý muốn sau khi tạo tour.
+                        </label>
+                    </span>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_dropdown">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                   Khách Sạn
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <span class="form-sub-label-container" style="vertical-align:top">
+                        <select name="idPhuongTien" class="form-dropdown" style="width:150px" data-component="dropdown" required="" aria-label="Vehicle Type">
+                            @foreach (var item in new DuLich.Models.mapKhachSan().DanhSach())
+                            {
+                                <option value="@item.ID_KhachSan">@item.TenKhachSan | Giá: @item.GiaPhong</option>
+                            }
+                        </select>
+                        <label style=" color: darkorange" class="form-sub-label" aria-hidden="false">
+                            Bao gồm tài xế. (Hướng dẫn viên nếu cần thiết)
+                        </label>
+                    </span>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_dropdown">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    Loại xe
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <span class="form-sub-label-container" style="vertical-align:top">
+                        <select name="idPhuongTien" class="form-dropdown" style="width:150px" data-component="dropdown" required="" aria-label="Vehicle Type">
+                            @foreach (var item in new DuLich.Models.mapPhuongTien().DanhSachPhuongTien(PhuongTien))
+                            {
+                                <option value="@item.ID">@item.Ten | Giá: @item.Gia/@item.DonVi</option>
+                            }
+                        </select>
+                        <label style=" color: darkorange" class="form-sub-label" aria-hidden="false">
+                            Bao gồm tài xế. (Hướng dẫn viên nếu cần thiết)
+                        </label>
+                    </span>
+                </div>
+            </li>
+            <li class="form-line jf-required" data-type="control_fullname">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    Số lượng hành khách
+                    <span class="form-required">*</span>
+                </label>
+                <div class="form-input jf-required">
+                    <div data-wrapper-react="true">
+                        <span class="form-sub-label-container" style="vertical-align:top" data-input-type="first">
+                            <input name="nguoilon" type="number" data-type="input-spinner" class="form-spinner-input  form-textbox validate[required]" data-spinnermin="0" data-defaultvalue="0" value="@NguoiLon" min="1" max="@Model.SoNguoiToiDa" data-component="spinner" aria-labelledby="label_32" required="" />
+                            <label style=" color: darkorange" class="form-sub-label" aria-hidden="false">
+                                Người lớn
+                            </label>
+                        </span>
+
+                        <span class="form-sub-label-container" style="vertical-align:top" data-input-type="last">
+                            <input name="treem" type="number" data-type="input-spinner" class="form-spinner-input  form-textbox validate[required]" data-spinnermin="0" data-defaultvalue="0" value="@TreEm" min="1" max="@Model.SoNguoiToiDa" data-component="spinner" aria-labelledby="label_32" required="" />
+                            <label style=" color: darkorange" class="form-sub-label" aria-hidden="false">
+                                Trẻ em (2-12 tuổi và cao từ 100-140cm)
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <li class="form-line" data-type="control_textarea">
+                <label style=" color: darkorange" class="form-label form-label-left form-label-auto">
+                    Tin nhắn bổ sung:
+                </label>
+                <div class="form-input">
+                    <textarea name="tinNhan" class="form-textarea"></textarea>
+                </div>
+            </li>
+        </ul>
+
+        <div class="form-input-wide">
+            <div data-align="center" class="form-buttons-wrapper form-buttons-center jsTest-button-wrapperField">
+                <button type="submit" class="form-submit-button submit-button jf-form-buttons jsTest-submitField" data-component="button" data-content="">
+                    GỬI ĐƠN ĐẶT TOUR CỦA BẠN
+                </button>
+            </div>
+        </div>
+    }
+</div>
+@*<input id="giaXe" name="giaXe" value="" />
+    @section script{
+        <script>
+            function giaPhuongTien() {
+                var x = document.getElementById("idPhuongTien").innerHTML;
+                var number = x.match(/\d/g);
+                number = number.join("");
+                document.getElementById('giaXe').value = number;
+            }
+        </script>
+    }*@

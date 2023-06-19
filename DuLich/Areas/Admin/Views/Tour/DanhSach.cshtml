@@ -1,0 +1,112 @@
+﻿@model IEnumerable<DuLich.Models.TourDuLich>
+@{
+    ViewBag.Title = "Danh sách tour";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+    int i = 0;
+}
+
+<div class="row" style=" margin-top:50px">
+    <div class="col-12">
+        <p>
+            DANH SACH TOUR DU LỊCH
+            <br />
+            <button type="button" class="btn btn-info btn-sm" onclick="LoadForm()"> <i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp&nbspThêm mới</button>
+        </p>
+        <table class="table table-bordered" style="color: unset">
+            <tr>
+                <th>STT</th>
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                    Tên tour
+                </th>
+                <th>
+                    Địa điểm
+                </th>
+                <th>
+                    Tỉnh thành
+                </th>
+                <th>
+                    Loại tour
+                </th>
+                <th>
+                    Giá tour
+                </th>
+                @*<th>
+                        Bài viết
+                    </th>*@
+                <th>#</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        <a href="~/Admin/Tour/CapNhatAnh?idTour=@item.ID"><img src="@item.HinhAnh" style="height:100px; width:100px" /></a>
+                    </td>
+                    <td>
+                        @item.TieuDe
+                    </td>
+                    <td>
+                        @item.DiaDiem
+                    </td>
+                    <td>
+                        @{
+                            var tinh = new DuLich.Models.mapTinhThanh().ChiTiet(item.IdTinh ?? 0);
+                            if (tinh != null)
+                            {
+                                <span>@tinh.Ten</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            var loaiTour = new DuLich.Models.mapLoaiTour().ChiTiet(item.IdLoaiTour ?? 0);
+                            if (loaiTour != null)
+                            {
+                                <span>@loaiTour.LoaiTour1</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @string.Format("{0:#,0}", item.GiaTour)
+                    </td>
+                    @*<td>
+                            @Html.Raw(@item.BaiViet)
+
+                        </td>*@
+                    <td>
+                        <button type="button" class="btn btn-icon btn-round btn-success btn-xs" onclick="CapNhat(@item.ID)">
+                            <i class="fas fa-pen-square"></i>
+                        </button>
+                        <button type="button" class="btn btn-icon btn-round btn-danger btn-xs" onclick="if (confirm('Có muốn xóa không?')) { location.href='/Admin/Tour/Xoa?idTour=@item.ID' }">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<div id="formBox">
+
+</div>
+@section script{
+    <script>
+        function CapNhat(id) {
+            $("#formBox").load("/Admin/Tour/CapNhat?idTour=" + id, function () {
+                $("#formCapNhatTour").modal("show");
+            });
+        }
+    </script>
+    <script>
+        function LoadForm() {
+            $("#formBox").load("/Admin/Tour/ThemMoi", function () {
+                $("#formThemTour").modal("show");
+            });
+        }
+    </script>
+}
+

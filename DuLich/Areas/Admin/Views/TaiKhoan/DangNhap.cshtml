@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Areas/Admin/assets/css/dangnhap.css" rel="stylesheet" />
+    <title>Đăng Nhập</title>
+</head>
+<body>
+    <div class="form-tt">
+        <h2>ĐĂNG NHẬP</h2>
+        <form method="post">
+            <input type="text" name="tenDangNhap" placeholder="Nhập  tên đăng nhập" />
+            <input type="password" name="matKhau" placeholder="Nhập mật khẩu" />
+            <p style="color:red; text-align:left;">
+                @ViewBag.thongbao
+            </p><br />
+            <input type="checkbox" id="checkbox" name="checkbox"><label class="checkbox-text">Nhớ đăng nhập lần sau</label>
+            <input type="submit" name="submit" value="ĐĂNG NHẬP" />
+            <label class="psw-text"><a href="#" class="quenmk">Quên mật khẩu</a>&nbsp&nbsp&nbsp</label>
+            <label class="psw-text"><a href="#" class="dangky">Đăng ký</a></label>
+        </form>
+    </div>
+</body>
+</html>

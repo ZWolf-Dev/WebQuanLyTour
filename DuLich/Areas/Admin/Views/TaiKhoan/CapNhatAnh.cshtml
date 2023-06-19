@@ -1,0 +1,36 @@
+﻿@model DuLich.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "Cập Nhật Hình Ảnh";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+}
+
+<div class="row" style="margin-top:50px">
+    <div class="col-md-12">
+        <h4>
+            Cập Nhật Hình Ảnh: @Model.TenDangNhap
+        </h4>
+        @*<form action="/Admin/TaiKhoan/CapNhatAnh" method="post" enctype="multipart/form-data"></form>*@
+        @using (Html.BeginForm("CapNhatAnh","TaiKhoan",FormMethod.Post,new { enctype = "multipart/form-data"}))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="tenDangNhap" value="@Model.TenDangNhap"/>
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Chọn file ảnh</label>
+                    <div class="col-md-10">
+                        <input type="file" name="avatar" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+                <p style="color:red">@ViewBag.error</p>
+            </div>
+        }
+    </div>
+</div>

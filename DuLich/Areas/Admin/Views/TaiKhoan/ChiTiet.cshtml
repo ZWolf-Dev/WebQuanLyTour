@@ -1,0 +1,123 @@
+﻿@model DuLich.Models.TaiKhoan
+
+@{
+    ViewBag.Title = "THÔNG TIN TÀI KHOẢN";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+    var listChucNang = new DuLich.Models.DuLichDBEntities().ChucNangs.ToList();
+}
+
+<div class="row" style="margin-top:50px">
+    <div class="col-md-12">
+        <p>
+            THÔNG TIN TÀI KHOẢN: @Model.TenHienThi
+        </p>
+    </div>
+    <div class="col-md-4">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TenDangNhap)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenDangNhap)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MatKhau)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MatKhau)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TenHienThi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TenHienThi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SoDienThoai)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SoDienThoai)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HinhAnh)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HinhAnh)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col-md-8">
+        <h4>Phân quyền</h4>
+        <div class="col-md-12">
+            <table class="table table-bordered" style="color:unset">
+                <thead>
+                    <tr>
+                        <td>Mã chức năng</td>
+                        <td>Tên chức năng</td>
+                        <td>Phân quyền</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in listChucNang)
+                    {
+                        var phanQuyen = new DuLich.Models.DuLichDBEntities().PhanQuyens.Count(m => m.TenDangNhap == Model.TenDangNhap & m.MaChucNang == item.MaChucNang);
+                        <tr>
+                            <th>@item.MaChucNang</th>
+                            <th>@item.TenChucNang</th>
+                            <th>
+                                <input type="checkbox" @Html.Raw(phanQuyen > 0 ? "checked" : "") onchange="LuuPhanQuyen('@Model.TenDangNhap', '@item.MaChucNang')"/>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section script{
+    <script>
+        function LuuPhanQuyen(tenDangNhap, maChucNang) {
+            /*location.href = "/Admin/TaiKhoan/PhanQuyen?tenDangNhap=" + tenDangNhap + "&maChucNang=" + maChucNang;*/
+            var jsonData = {
+                tenDangNhap: tenDangNhap,
+                maChucNang: maChucNang
+            }
+            $.ajax({
+                url: '/Admin/TaiKhoan/PhanQuyenJson',
+                type: 'post',
+                data: jsonData,
+                dataType:'JSON',
+                success: function (data) {
+                    alert(data.status)
+                }
+            })
+        }
+    </script>
+}
+
