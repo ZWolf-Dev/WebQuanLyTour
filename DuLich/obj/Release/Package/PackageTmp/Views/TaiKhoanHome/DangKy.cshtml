@@ -1,0 +1,79 @@
+﻿
+<meta name="viewport" content="width=device-width" />
+<link href="~/Areas/Admin/assets/css/dangnhap.css" rel="stylesheet" />
+
+@model DuLich.Models.TaiKhoan
+
+<div class="form-tt">
+    <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+    <div style="color:aqua;" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger", @style = "color:danger" })
+                            <div class="form-group">
+                                <h3>Tên đăng nhập</h3>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h3>Mật khẩu</h3>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h3>Xác nhận mật khẩu</h3>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="password" name="NhapLaiMatKhau" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h3>Tên hiển thị</h3>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TenHienThi, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TenHienThi, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h3>Email</h3>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h3>Số điện thoại</h3>
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.SoDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SoDienThoai, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="ĐĂNG KÝ" class="btn btn-default" />
+                                    <label class="psw-text"><a href="/TaiKhoanHome/FormDangNhap" class="dangnhap">Đăng nhập</a></label>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

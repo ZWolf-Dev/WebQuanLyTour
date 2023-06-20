@@ -1,0 +1,32 @@
+﻿<div class="main__slide">
+    @foreach (var item in new DuLich.Models.mapSlider().DanhSach())
+    {
+        <div class="home_slide__item">
+            <div class="home_slide__background" style="background-image: url(@item.Url)"></div>
+            <div class="home_slider__content">
+                <div class="home_slider_content_inner animated bounceInLeft">
+                    <h1>tour</h1>
+                    <h1>@item.TieuDe</h1>
+                    <div class="button home_slider__button">
+                        <div class="button_bcg"></div>
+                        <a href="~/TourDuLich/ChiTiet?idTour=@item.idTour">Xem ngay<span></span><span></span><span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="main_slide__nav nav__prev">
+        <i onclick="plusSlides(-1)" class="fas fa-chevron-circle-left"></i>
+    </div>
+    <div class="main_slide__nav nav__next">
+        <i onclick="plusSlides(1)"
+           class="fas fa-chevron-circle-right"></i>
+    </div>
+    <div class="main_slide__dots">
+        <ul class="customs_dots">
+            <li class="customs_dot active" onclick="currentSlide(1)">01.</li>
+            <li class="customs_dot" onclick="currentSlide(2)">02.</li>
+            <li class="customs_dot" onclick="currentSlide(3)">03.</li>
+        </ul>
+    </div>
+</div>

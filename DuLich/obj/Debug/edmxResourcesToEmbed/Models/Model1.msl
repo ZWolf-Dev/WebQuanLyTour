@@ -290,5 +290,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BinhLuans">
+      <EntityTypeMapping TypeName="DuLichDBModel.BinhLuan">
+        <MappingFragment StoreEntitySet="BinhLuan">
+          <ScalarProperty Name="Cap" ColumnName="Cap" />
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="idReply" ColumnName="idReply" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="LuotChiaSe" ColumnName="LuotChiaSe" />
+          <ScalarProperty Name="LuotTraLoi" ColumnName="LuotTraLoi" />
+          <ScalarProperty Name="LuotThich" ColumnName="LuotThich" />
+          <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+          <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+          <ScalarProperty Name="MaBinhLuan" ColumnName="MaBinhLuan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -143,17 +143,102 @@
                             </div>
                             <div id="flag5" class="block-detail-tour">
                                 <h3 class="block-detail-title">
-                                    <i class="fa fa-comment"></i> Bình luận
+                                    <i class="fa fa-comment"></i> Bình luận (@(new DuLich.Models.mapBinhLuan().SoLuongBL(Model.ID)))
                                 </h3>
-                                <div class="block-detail-tour-content">
-                                    <div class="fb-comments" data-href="https://vivuviet.vn/tour/du-lich-mu-cang-chai-2-ngay-1-dem/" data-width="100%" data-numposts="5"></div>
+                                <div class="card">
+                                    @foreach (var bl in new DuLich.Models.mapBinhLuan().DanhSachTop5(1, Model.ID))
+                                    {
+                                        <div style="padding: 1em;" class="d-flex flex-start">
+                                            <img class="rounded-circle shadow-1-strong me-3"
+                                                 src="@(new DuLich.Models.mapTaiKhoan().ChiTiet(bl.MaTaiKhoan).HinhAnh)" alt="avatar" style="width: 4em; height: 4em;" /> &nbsp;&nbsp;
+                                            <div class="flex-grow-1 flex-shrink-1">
+                                                <div>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <p style="color: #007bff !important; font-weight: bold;" class="mb-1">
+                                                            @(new DuLich.Models.mapTaiKhoan().ChiTiet(bl.MaTaiKhoan).TenHienThi) <span class="small">- @bl.NgayDang</span>
+                                                        </p>
+                                                    </div>
+                                                    <p class="small mb-0">
+                                                        @bl.NoiDung
+                                                    </p>
+                                                    <div class="small d-flex justify-content-start">
+                                                        <a href="#!" class="d-flex align-items-center me-3">
+                                                            <i class="far fa-thumbs-up me-2"></i>
+                                                            <p style="color: #007bff !important;" class="mb-0">Like (@bl.LuotThich)</p>
+                                                        </a>
+                                                        &nbsp;&nbsp;
+                                                        <a href="#!" class="d-flex align-items-center me-3">
+                                                            <i class="far fa-comment-dots me-2"></i>
+                                                            <p style="color: #007bff !important;" class="mb-0">Comment (@bl.LuotTraLoi)</p>
+                                                        </a>
+                                                        &nbsp;&nbsp;
+                                                        <a href="#!" class="d-flex align-items-center me-3">
+                                                            <i class="fas fa-share me-2"></i>
+                                                            <p style="color: #007bff !important;" class="mb-0">Share (@bl.LuotChiaSe)</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                @foreach (var bl1 in new DuLich.Models.mapBinhLuan().DanhSachTop5(2, Model.ID))
+                                                {
+                                                    <div class="d-flex flex-start mt-4">
+                                                        <a class="me-3" href="#">
+                                                            <img class="rounded-circle shadow-1-strong"
+                                                                 src="@(new DuLich.Models.mapTaiKhoan().ChiTiet(bl1.MaTaiKhoan).HinhAnh)" alt="avatar" style="width: 4em; height: 4em;" /> &nbsp;&nbsp;
+                                                        </a>
+                                                        <div class="flex-grow-1 flex-shrink-1">
+                                                            <div>
+                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                    <p style="color: #007bff !important; font-weight: bold;" class="mb-1">
+                                                                        @(new DuLich.Models.mapTaiKhoan().ChiTiet(bl1.MaTaiKhoan).TenHienThi) <span class="small">- @bl1.NgayDang</span>
+                                                                    </p>
+                                                                </div>
+                                                                <p class="small mb-0">
+                                                                    @bl1.NoiDung
+                                                                </p>
+                                                                <div class="small d-flex justify-content-start">
+                                                                    <a href="#!" class="d-flex align-items-center me-3">
+                                                                        <i class="far fa-thumbs-up me-2"></i>
+                                                                        <p style="color: #007bff !important;" class="mb-0">Like (@bl1.LuotThich)</p>
+                                                                    </a>
+                                                                    &nbsp;&nbsp;
+                                                                    <a href="#!" class="d-flex align-items-center me-3">
+                                                                        <i class="far fa-comment-dots me-2"></i>
+                                                                        <p style="color: #007bff !important;" class="mb-0">Comment (@bl1.LuotTraLoi)</p>
+                                                                    </a>
+                                                                    &nbsp;&nbsp;
+                                                                    <a href="#!" class="d-flex align-items-center me-3">
+                                                                        <i class="fas fa-share me-2"></i>
+                                                                        <p style="color: #007bff !important;" class="mb-0">Share (@bl1.LuotChiaSe)</p>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+                                        <div class="d-flex flex-start w-100">
+                                            <div class="form-outline w-100">
+                                                <textarea class="form-control" id="textAreaExample" rows="4"
+                                                          style="background: #fff;"></textarea>
+                                                <label class="form-label" for="textAreaExample">Message</label>
+                                            </div>
+                                        </div>
+                                        <div class="float-end mt-2 pt-1">
+                                            <button type="button" class="btn btn-primary btn-sm">Post comment</button>
+                                            <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
 
                         <div class="tour-sidebar large-4 col">
                             <div class="boxDesign1">
-                                <div class="name">Du Lịch Mù Căng Chải 2 ngày 1 đêm</div>
+                                <div class="name">@Model.TieuDe</div>
                                 <div class="attr">
                                     <ul>
                                         <li>
@@ -262,8 +347,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                                </div>
+                            </div>
         </div>
     </div>
 </div>
@@ -282,20 +367,7 @@
         }
     }
 </script>
-<!-- #mobile-menu -->
-<div id='fb-root'></div>
-<script>
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<div class='fb-customerchat'
-     attribution="wordpress"
-     page_id='110809980305522'>
-</div>
+
 
 
 

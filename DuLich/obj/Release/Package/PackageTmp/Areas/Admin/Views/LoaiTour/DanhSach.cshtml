@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DuLich.Models.LoaiTour>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+    int i = 0;
+}
+
+<div class="row" style="margin-top:50px">
+    <div class="col-12">
+        <p>
+            DANH SACH LOẠI TOUR
+            <br />
+            <button type="button" class="btn btn-info btn-sm" onclick="LoadForm()"> <i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp&nbspThêm mới</button>
+        </p>
+        <table class="table table-bordered" style="color: unset">
+            <tr>
+                <th>STT</th>
+                <th>
+                    Loại Tour
+                </th>
+                <th>#</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        @item.LoaiTour1
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-icon btn-round btn-success btn-xs" onclick="CapNhat(@item.ID_LoaiTour)">
+                            <i class="fas fa-pen-square"></i>
+                        </button>
+                        <button type="button" class="btn btn-icon btn-round btn-danger btn-xs" onclick="if (confirm('Có muốn xóa không?')) { location.href='/Admin/LoaiTour/Xoa?idLoaiTour=@item.ID_LoaiTour' }">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<div id="formBox">
+
+</div>
+@section script{
+    <script>
+        function CapNhat(id) {
+            $("#formBox").load("/Admin/LoaiTour/CapNhat?idLoaiTour=" + id, function () {
+                $("#formCapNhatLoaiTour").modal("show");
+            });
+        }
+    </script>
+    <script>
+        function LoadForm() {
+            $("#formBox").load("/Admin/LoaiTour/ThemMoi", function () {
+                $("#formThemLoaiTour").modal("show");
+            });
+        }
+    </script>
+}

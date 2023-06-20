@@ -1,0 +1,150 @@
+﻿
+.form-label-left {
+    width: 150px;
+}
+
+.form-line {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.form-label-right {
+    width: 150px;
+}
+
+.form-all {
+    width: 550px;
+    color: #555 !important;
+    font-family: 'Didact Gothic';
+    font-size: 18px;
+}
+
+.form-radio-item label, .form-checkbox-item label, .form-grading-label, .form-header {
+    color: false;
+}
+
+
+
+
+/* Injected CSS Code */
+.form-label.form-label-auto {
+    display: inline-block;
+    float: left;
+    text-align: left;
+}
+/*PREFERENCES STYLE*/
+.form-all {
+    font-family: Didact Gothic, sans-serif;
+}
+
+.form-label.form-label-auto {
+    display: inline-block;
+    float: left;
+    text-align: left;
+}
+
+.form-line {
+    margin-top: 12px 36px 12px 36px px;
+    margin-bottom: 12px 36px 12px 36px px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.form-all {
+    max-width: 550px;
+    width: 100%;
+}
+
+.form-label.form-label-left,
+.form-label.form-label-right,
+.form-label.form-label-left.form-label-auto,
+.form-label.form-label-right.form-label-auto {
+    width: 150px;
+}
+
+.form-all {
+    font-size: 18px
+}
+
+.supernova .form-all, .form-all {
+    background-color: #fff;
+}
+
+.form-all {
+    color: #555;
+}
+
+.form-label-top,
+.form-label-left,
+.form-label-right,
+.form-html,
+.form-checkbox-item label,
+.form-radio-item label,
+span.FITB .qb-checkbox-label,
+span.FITB .qb-radiobox-label,
+span.FITB .form-radio label,
+span.FITB .form-checkbox label,
+[data-blotid][data-type=checkbox] [data-labelid],
+[data-blotid][data-type=radiobox] [data-labelid],
+span.FITB-inptCont[data-type=checkbox] label,
+span.FITB-inptCont[data-type=radiobox] label {
+    color: #555;
+}
+
+.form-sub-label {
+    color: #6f6f6f;
+}
+
+.supernova {
+    background-color: undefined;
+}
+
+    .supernova body {
+        background: transparent;
+    }
+
+.form-textbox,
+.form-textarea,
+.form-dropdown,
+.form-radio-other-input,
+.form-checkbox-other-input,
+.form-captcha input,
+.form-spinner input {
+    background-color: undefined;
+}
+
+.supernova {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center top;
+}
+
+.supernova {
+    background-image: url("https://shots.jotform.com/elton/pattern/pattern-eo2z.png");
+}
+
+#stage {
+    background-image: url("https://shots.jotform.com/elton/pattern/pattern-eo2z.png");
+}
+
+.form-all {
+    background-image: none;
+}
+
+.form-all {
+    position: relative;
+}
+
+    .form-all:before {
+        content: "";
+        background-image: url("https://www.jotform.com/uploads/prajithrony/form_files/img-01.5c5231ad620a17.70052007.jpg");
+        display: inline-block;
+        height: 80px;
+        position: absolute;
+        background-size: 120px 80px;
+        background-repeat: no-repeat;
+        width: 100%;
+    }
+

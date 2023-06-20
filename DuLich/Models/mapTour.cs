@@ -19,9 +19,9 @@ namespace DuLich.Models
         //danh sach theo tinh
         public List<TourDuLich> DanhSachTheoTen(string ten)
         {
-            var data = db.TourDuLiches.Where(s => s.TieuDe.Contains(ten)).ToList();
-           
-            return data;
+            var data = db.TourDuLiches.Where(s => s.TieuDe.Contains(ten));
+            //string sql = ((System.Data.Entity.Core.Objects.ObjectQuery)data).ToTraceString();
+            return data.ToList();
             //var data = from tour in db.TourDuLiches
             //           select tour;
             //data = data.Where(s => s.TieuDe.Contains('%' + ten + '%'));

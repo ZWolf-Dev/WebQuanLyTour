@@ -15,6 +15,22 @@
           <Property Name="ThoiGian" Type="datetime" />
           <Property Name="MoTa" Type="nvarchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="BinhLuan">
+          <Key>
+            <PropertyRef Name="MaBinhLuan" />
+          </Key>
+          <Property Name="MaBinhLuan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTour" Type="int" Nullable="false" />
+          <Property Name="MaTaiKhoan" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="LuotThich" Type="int" />
+          <Property Name="LuotTraLoi" Type="int" />
+          <Property Name="LuotChiaSe" Type="int" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="2048" />
+          <Property Name="idReply" Type="int" />
+          <Property Name="Cap" Type="int" />
+          <Property Name="NgayDang" Type="nvarchar" MaxLength="50" />
+          <Property Name="TinhTrang" Type="int" />
+        </EntityType>
         <EntityType Name="CamNangDuLich">
           <Key>
             <PropertyRef Name="ID_CamNang" />
@@ -247,6 +263,46 @@
           <Property Name="IdAlbum" Type="int" />
           <Property Name="IdLichTrinh" Type="int" />
         </EntityType>
+        <Association Name="FK_BinhLuan_BinhLuan">
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1" />
+          <End Role="BinhLuan1" Type="Self.BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BinhLuan">
+              <PropertyRef Name="MaBinhLuan" />
+            </Principal>
+            <Dependent Role="BinhLuan1">
+              <PropertyRef Name="idReply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_TaiKhoan">
+          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenDangNhap" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="MaTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_TourDuLich">
+          <End Role="TourDuLich" Type="Self.TourDuLich" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourDuLich">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="MaTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DatTour_TaiKhoan">
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -490,6 +546,7 @@
         </Function>
         <EntityContainer Name="DuLichDBModelStoreContainer">
           <EntitySet Name="AlbumAnh" EntityType="Self.AlbumAnh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CamNangDuLich" EntityType="Self.CamNangDuLich" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChucNang" EntityType="Self.ChucNang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DatTour" EntityType="Self.DatTour" Schema="dbo" store:Type="Tables" />
@@ -511,6 +568,18 @@
           <EntitySet Name="Tour_DichVu" EntityType="Self.Tour_DichVu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tour_KieuTour" EntityType="Self.Tour_KieuTour" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourDuLich" EntityType="Self.TourDuLich" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BinhLuan_BinhLuan" Association="Self.FK_BinhLuan_BinhLuan">
+            <End Role="BinhLuan" EntitySet="BinhLuan" />
+            <End Role="BinhLuan1" EntitySet="BinhLuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="Self.FK_BinhLuan_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+            <End Role="BinhLuan" EntitySet="BinhLuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_TourDuLich" Association="Self.FK_BinhLuan_TourDuLich">
+            <End Role="TourDuLich" EntitySet="TourDuLich" />
+            <End Role="BinhLuan" EntitySet="BinhLuan" />
+          </AssociationSet>
           <AssociationSet Name="FK_DatTour_TaiKhoan" Association="Self.FK_DatTour_TaiKhoan">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="DatTour" EntitySet="DatTour" />
@@ -677,6 +746,7 @@
           <Property Name="HinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PhanQuyens" Relationship="DuLichDBModel.FK_PhanQuyen_TaiKhoan" FromRole="TaiKhoan" ToRole="PhanQuyen" />
           <NavigationProperty Name="DatTours" Relationship="DuLichDBModel.FK_DatTour_TaiKhoan" FromRole="TaiKhoan" ToRole="DatTour" />
+          <NavigationProperty Name="BinhLuans" Relationship="DuLichDBModel.FK_BinhLuan_TaiKhoan" FromRole="TaiKhoan" ToRole="BinhLuan" />
         </EntityType>
         <EntityType Name="Tour_KieuTour">
           <Key>
@@ -811,6 +881,19 @@
           <AssociationSet Name="FK_DatTourDetail_DatTour" Association="DuLichDBModel.FK_DatTourDetail_DatTour">
             <End Role="DatTour" EntitySet="DatTours" />
             <End Role="DatTourDetail" EntitySet="DatTourDetails" />
+          </AssociationSet>
+          <EntitySet Name="BinhLuans" EntityType="DuLichDBModel.BinhLuan" />
+          <AssociationSet Name="FK_BinhLuan_BinhLuan" Association="DuLichDBModel.FK_BinhLuan_BinhLuan">
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
+            <End Role="BinhLuan1" EntitySet="BinhLuans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="DuLichDBModel.FK_BinhLuan_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_TourDuLich" Association="DuLichDBModel.FK_BinhLuan_TourDuLich">
+            <End Role="TourDuLich" EntitySet="TourDuLiches" />
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="spTimkiemTour_Result">
@@ -998,6 +1081,7 @@
           <NavigationProperty Name="TinhThanh" Relationship="DuLichDBModel.fk_id_tinh" FromRole="TourDuLich" ToRole="TinhThanh" />
           <NavigationProperty Name="Tour_KieuTour" Relationship="DuLichDBModel.FK_Tour_KieuTour_TourDuLich" FromRole="TourDuLich" ToRole="Tour_KieuTour" />
           <NavigationProperty Name="DichVus" Relationship="DuLichDBModel.Tour_DichVu" FromRole="TourDuLich" ToRole="DichVu" />
+          <NavigationProperty Name="BinhLuans" Relationship="DuLichDBModel.FK_BinhLuan_TourDuLich" FromRole="TourDuLich" ToRole="BinhLuan" />
         </EntityType>
         <Association Name="FK_TourDuLich_AlbumAnh">
           <End Type="DuLichDBModel.AlbumAnh" Role="AlbumAnh" Multiplicity="0..1">
@@ -1172,6 +1256,66 @@
             </Principal>
             <Dependent Role="DatTourDetail">
               <PropertyRef Name="idDatTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BinhLuan">
+          <Key>
+            <PropertyRef Name="MaBinhLuan" />
+          </Key>
+          <Property Name="MaBinhLuan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTour" Type="Int32" Nullable="false" />
+          <Property Name="MaTaiKhoan" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LuotThich" Type="Int32" />
+          <Property Name="LuotTraLoi" Type="Int32" />
+          <Property Name="LuotChiaSe" Type="Int32" />
+          <Property Name="NoiDung" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="idReply" Type="Int32" />
+          <Property Name="NgayDang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTrang" Type="Int32" />
+          <NavigationProperty Name="BinhLuan1" Relationship="DuLichDBModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
+          <NavigationProperty Name="BinhLuan2" Relationship="DuLichDBModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
+          <NavigationProperty Name="TaiKhoan" Relationship="DuLichDBModel.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
+          <NavigationProperty Name="TourDuLich" Relationship="DuLichDBModel.FK_BinhLuan_TourDuLich" FromRole="BinhLuan" ToRole="TourDuLich" />
+          <Property Name="Cap" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_BinhLuan_BinhLuan">
+          <End Type="DuLichDBModel.BinhLuan" Role="BinhLuan" Multiplicity="0..1" />
+          <End Type="DuLichDBModel.BinhLuan" Role="BinhLuan1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BinhLuan">
+              <PropertyRef Name="MaBinhLuan" />
+            </Principal>
+            <Dependent Role="BinhLuan1">
+              <PropertyRef Name="idReply" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_TaiKhoan">
+          <End Type="DuLichDBModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DuLichDBModel.BinhLuan" Role="BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="TenDangNhap" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="MaTaiKhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_TourDuLich">
+          <End Type="DuLichDBModel.TourDuLich" Role="TourDuLich" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DuLichDBModel.BinhLuan" Role="BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TourDuLich">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="MaTour" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1467,6 +1611,23 @@
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="taiKhoan" ColumnName="taiKhoan" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BinhLuans">
+            <EntityTypeMapping TypeName="DuLichDBModel.BinhLuan">
+              <MappingFragment StoreEntitySet="BinhLuan">
+                <ScalarProperty Name="Cap" ColumnName="Cap" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="idReply" ColumnName="idReply" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="LuotChiaSe" ColumnName="LuotChiaSe" />
+                <ScalarProperty Name="LuotTraLoi" ColumnName="LuotTraLoi" />
+                <ScalarProperty Name="LuotThich" ColumnName="LuotThich" />
+                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+                <ScalarProperty Name="MaTour" ColumnName="MaTour" />
+                <ScalarProperty Name="MaBinhLuan" ColumnName="MaBinhLuan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

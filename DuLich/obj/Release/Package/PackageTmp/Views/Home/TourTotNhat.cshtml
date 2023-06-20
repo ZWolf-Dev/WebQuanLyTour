@@ -1,0 +1,32 @@
+﻿    <!--Intro-->
+<div class="main_intro">
+    <h2>Những tour du lịch tốt nhất</h2>
+    <p>Đây là những tour du lịch tốt nhất hiện nay của chúng tôi.</p>
+    <p>Sẽ làm bạn hài lòng khi đăng ký những tour dưới đây.</p>
+    <div class="main_intro__items">
+        @foreach (var item in new DuLich.Models.mapTour().DanhSachTotNhat())
+        {
+            <div class="intro_item">
+                <div class="intro_item__backgroud" style="background-image: url(@item.HinhAnh)"></div>
+                <div class="intro_item__content">
+                    <div class="intro_date">Từ 15/04 - 15/05</div>
+                    <div class="intro_text">
+                        <h1>@item.TieuDe</h1>
+                        <div class="intro_price">Giá: @string.Format("{0:#,0}", item.GiaTour) đ/Tour</div>
+                        <div class="rating rating_4">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="button intro_button">
+                        <div class="button_bcg"></div>
+                        <a href="~/TourDuLich/ChiTiet?idTour=@item.ID&idAlbum=@item.IdAlbum">Xem ngay<span></span><span></span><span></span></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

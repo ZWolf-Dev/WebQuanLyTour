@@ -1,0 +1,6 @@
+D:\Website\DATTTN\Common\bin\Release\Common.dll
+D:\Website\DATTTN\Common\bin\Release\Common.pdb
+D:\Website\DATTTN\Common\obj\Release\Common.csproj.AssemblyReference.cache
+D:\Website\DATTTN\Common\obj\Release\Common.csproj.CoreCompileInputs.cache
+D:\Website\DATTTN\Common\obj\Release\Common.dll
+D:\Website\DATTTN\Common\obj\Release\Common.pdb

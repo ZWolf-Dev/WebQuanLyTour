@@ -1,0 +1,50 @@
+﻿@model DuLich.Models.TinhThanh
+
+<!-- Modal -->
+<div id="formCapNhatTinhThanh" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="display:block">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cập Nhật Tỉnh Thành</h4>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4>Tỉnh Thành</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ID_Tinh)
+
+
+                        <div class="form-group">
+                            <label>Tên Tỉnh/Thành</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

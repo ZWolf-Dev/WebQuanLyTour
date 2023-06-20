@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Offers";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<!-- main Offers-->
+<div class="main">
+    <div class="main__slide_offers">
+        <div class="home_slide__item">
+            <div class="home_slide__background"
+                 style="background-image: url(/Content/styles/images/offers_slide.jpg)"></div>
+            <div class="home__content">
+                <div class="home__title animated bounceInLeft">
+                    ưu đãi
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="offers">
+        <div class="box offers__box2">
+            <div class="offers_grid" style="position: relative;">
+                @foreach (var item in new DuLich.Models.mapTour().DanhSachTopDanhGia())
+                {
+                    <div class="offers_item2">
+                        <div class="offers_image f_image">
+                            <div class="offers_image_background"
+                                 style="background-image:url(@item.HinhAnh)"></div>
+                            <div class="offers_name"><a href="~/TourDuLich/ChiTiet?idTour=@item.ID&idAlbum=@item.IdAlbum">@item.TieuDe</a></div>
+                        </div>
+                        <div class="offers_content">
+                            <div class="offers_price">@string.Format("{0:#,0}", item.GiaTour) đ/Tour</div>
+                            <h3 style="color: crimson; font-weight: bold;">@string.Format("{0:#,0}", item.GiaTour/item.SoNguoiToiDa) đ/Người </h3>
+                            <h3>Số người tối đa: @item.SoNguoiToiDa</h3>
+                            <div class="rating rating_4 offers_rating" data-rating="4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="offers_text">
+                                @Html.Raw(@item.BaiViet)
+                            </p>
+                            <div class="offers_icons">
+                                <ul class="offers_icons_list">
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/post.png" alt=""></li>
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/compass.png" alt=""></li>
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/bicycle.png" alt=""></li>
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/sailboat.png" alt=""></li>
+                                </ul>
+                            </div>
+                            <div class="button book_button">
+                                <a href="~/TourDuLich/ChiTiet?idTour=@item.ID&idAlbum=@item.IdAlbum">book<span></span><span></span><span></span></a>
+                            </div>
+                            <div class="offer_reviews">
+                                <div class="offer_reviews_content">
+                                    <div class="offer_reviews_title">very good</div>
+                                    <div class="offer_reviews_subtitle">@item.LuotXem lượt xem</div>
+                                </div>
+                                <div class="offer_reviews_rating" style="text-align: center">@item.DanhGia.0</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+       
+            </div>
+        </div>
+    </div>
+</div>
+

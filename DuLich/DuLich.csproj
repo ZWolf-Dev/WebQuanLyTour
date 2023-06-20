@@ -1665,6 +1665,9 @@
     <Compile Include="Models\AlbumAnh.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BinhLuan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CamNangDuLich.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1699,6 +1702,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\mapAlbum.cs" />
+    <Compile Include="Models\mapBinhLuan.cs" />
     <Compile Include="Models\mapDatTourDetail.cs" />
     <Compile Include="Models\mapDatTour.cs" />
     <Compile Include="Models\mapDichVu.cs" />

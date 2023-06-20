@@ -1,0 +1,129 @@
+﻿<div class="main_search">
+    <div id="tabs" class="main_search__tabs">
+        <div class="menu">
+            <ul class="main_nav__list">
+                <li class="main_nav__item" style="position:relative;">
+                    DU LỊCH TRONG NƯỚC
+                    <ul class="dropdown">
+                        <li><h4>Miền Bắc</h4></li>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachQuocGia(3))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSachTheoTinh?idTinh=@item.ID_Tinh"> @item.Ten </a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="dropdown" style="left:150px">
+                        <li><h4>Miền Trung</h4></li>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachQuocGia(4))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSachTheoTinh?idTinh=@item.ID_Tinh"> @item.Ten </a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="dropdown" style="left:300px">
+                        <li><h4>Miền Nam</h4></li>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachQuocGia(5))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSachTheoTinh?idTinh=@item.ID_Tinh"> @item.Ten </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <li class="main_nav__item" style="position:relative;">
+                    DU LỊCH NƯỚC NGOÀI
+                    <ul class="dropdown">
+                        <li><h4>Châu Á</h4></li>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachQuocGia(6))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSachTheoTinh?idTinh=@item.ID_Tinh"> @item.Ten </a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="dropdown" style="left:150px">
+                        <li><h4>Châu Âu</h4></li>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachQuocGia(7))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSachTheoTinh?idTinh=@item.ID_Tinh"> @item.Ten </a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="dropdown" style="left:300px">
+                        <li><h4>Châu Mỹ</h4></li>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachQuocGia(8))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSachTheoTinh?idTinh=@item.ID_Tinh"> @item.Ten </a>
+                            </li>
+                        }
+                    </ul>
+                    <ul class="dropdown" style="left:450px">
+                        <li><h4>Châu Phi</h4></li>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachQuocGia(9))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSachTheoTinh?idTinh=@item.ID_Tinh"> @item.Ten </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <li class="main_nav__item" style="position:relative;">
+                    KIỂU TOUR DU LỊCH
+                    <ul class="dropdown">
+                        @foreach (var loaiTour in new DuLich.Models.mapLoaiTour().DanhSachTheoIdCapCha(0))
+                        {
+                            <li>
+                                <a href="~/TourDuLich/DanhSach?idLoaiTour=@loaiTour.ID_LoaiTour"> @loaiTour.LoaiTour1</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="tabs-1" class="tabs_content animated fadeIn">
+            @*form tìm kiếm*@
+            <form action="~/TourDuLich/KetQuaTimKiem" method="get" class="search_content">
+                <div class="search_content__item">
+                    <div>Loại Tour</div>
+                    <select id="menu-2" name="idLoaiTour" class="search_content__input">
+                        <option value="">Tất cả loại tour</option>
+                        @foreach (var item in new DuLich.Models.mapLoaiTour().DanhSachLoaiTour())
+                        {
+                            <option value="@item.ID_LoaiTour">@item.LoaiTour1</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="search_content__item">
+                    <div>Địa điểm</div>
+                    <select name="idTinh" class="search_content__input">
+                        <option value="">Tất cả địa điểm</option>
+                        @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachTheoTen())
+                        {
+                            <option value="@item.ID_Tinh">@item.Ten</option>
+                        }
+                    </select>
+                </div>
+                <div class="search_content__item">
+                    <div>Mức Giá</div>
+                    <select name="idMucGia" class="search_content__input">
+                        <option value="">Tất cả mức giá</option>
+                        @foreach (var item in new DuLich.Models.mapMucGia().DanhSachMucGia())
+                        {
+                            <option value="@item.ID_Gia">@item.MucGia</option>
+                        }
+                    </select>
+                </div>
+                <button class="button search_content__button">
+                    Tìm kiếm <span></span><span></span><span></span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

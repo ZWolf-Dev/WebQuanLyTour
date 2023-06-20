@@ -1,0 +1,71 @@
+﻿@model DuLich.Models.AlbumAnh
+
+<!-- Modal -->
+<div id="formCapNhatAlbum" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="display:block">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cập Nhật Album</h4>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4>Album</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.ID_Album)
+
+
+                    <div class="form-group">
+                        <label>Tên Album</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TenAlbum, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenAlbum, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Người đăng</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NguoiDang, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.NguoiDang, "", new { @class = "text-danger" })
+                        </div>
+                    </div> <div class="form-group">
+                        <label>Ngày đăng</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ThoiGian, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ThoiGian, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

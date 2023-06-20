@@ -1,0 +1,306 @@
+﻿@model DuLich.Models.TourDuLich
+@{ var user = (DuLich.Models.TaiKhoan)System.Web.HttpContext.Current.Session["userhome"]; }
+@{ var lichtrinh = new DuLich.Models.mapLichTrinh().ChiTiet(Model.IdLichTrinh ?? 0);}
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/layout.cshtml";
+    int? idAlbum = ViewBag.IdAlbum;
+}
+
+<link href="~/Content/styles/css/flatsome.css" rel="stylesheet" />
+
+
+<!--Offers-->
+<div class="main_offers" style="padding-top:0">
+    <div class="box main_offers__box">
+        <div class="block-breadcrumb" style="margin-bottom:0">
+            <div class="row">
+                <div class="large-12 col">
+                    <div class="breadcrumb">
+                        <span><span><a href="~/Home/Index">Trang chủ</a> » <span class="breadcrumb_last" aria-current="page">@Model.TieuDe</span></span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 col">
+                <div class="tour-single-wrapper">
+                    <h1 class="tour-title">
+                        @Model.TieuDe
+                    </h1>
+                    <div class="row row-small">
+                        <div class="large-8 col">
+                            <div class="box-tour-gallery">
+                                <div class="tour-gallery">
+                                    @if (idAlbum == null)
+                                    {
+                                        <img class="demo" src="@Model.HinhAnh" style="width:100%;cursor:pointer">
+                                    }
+                                    else
+                                    {
+                                        <div class="w3-content" style="max-width:1200px">
+                                            @foreach (var item in new DuLich.Models.mapHinhAnh().DanhSach(idAlbum ?? 0))
+                                            {
+                                                <img class="mySlides item" src="@item.Url" style="display:none">
+                                            }
+                                            <div class="w3-row-padding w3-section">
+                                                @foreach (var item in new DuLich.Models.mapHinhAnh().DanhSach(idAlbum ?? 0))
+                                                {
+                                                    <div class="w3-col s4">
+                                                        <img class="demo w3-opacity w3-hover-opacity-off" src="@item.Url" style="width:100%;cursor:pointer" onclick="currentDiv(@item.ThuTu)">
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <script>
+                                            function currentDiv(n) {
+                                                showDivs(slideIndex = n);
+                                            }
+
+                                            function showDivs(n) {
+                                                var i;
+                                                var x = document.getElementsByClassName("mySlides");
+                                                var dots = document.getElementsByClassName("demo");
+                                                if (n > x.length) { slideIndex = 1 }
+                                                if (n < 1) { slideIndex = x.length }
+                                                for (i = 0; i < x.length; i++) {
+                                                    x[i].style.display = "none";
+                                                }
+                                                for (i = 0; i < dots.length; i++) {
+                                                    dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+                                                }
+                                                x[slideIndex - 1].style.display = "block";
+                                                dots[slideIndex - 1].className += " w3-opacity-off";
+                                            }
+                                        </script>
+                                    }
+
+
+                                </div>
+                            </div>
+
+                            <div id="flag1" class="block-detail-tour">
+                                <h3 class="block-detail-title">
+                                    <i class="fa fa-info-circle"></i> Điểm nhấn hành trình
+                                </h3>
+                                @if (lichtrinh == null)
+                                {
+                                    <h6>Không có điểm nhấn</h6>
+                                }
+                                else
+                                {
+                                    @Html.Raw(lichtrinh.DiemNhan)
+                                }
+                            </div>
+                            <div id="flag2" class="block-detail-tour">
+                                <h3 class="block-detail-title">
+                                    <i class="fa fa-map"></i> Lịch trình
+                                </h3>
+                                @if (lichtrinh == null)
+                                {
+                                    <h6> Không có lịch trình</h6>
+                                }
+                                else
+                                {
+                                    @Html.Raw(lichtrinh.LichTrinh1)
+                                }
+                            </div>
+                            <div id="flag3" class="block-detail-tour">
+                                <h3 class="block-detail-title">
+                                    <i class="fa fa-paperclip"></i> Dịch vụ bao gồm và không bao gồm
+                                </h3>
+                                <div class="block-detail-tour-content">
+                                    <p><strong>GIÁ TOUR BAO GỒM:</strong></p>
+                                    <ul>
+                                        @foreach (var item in new DuLich.Models.mapDichVu().DanhSach("A"))
+                                        {
+                                            <li>@item.TenDichVu</li>
+                                        }
+                                    </ul>
+                                    <p><strong>GIÁ TOUR KHÔNG BAO GỒM: </strong></p>
+                                    <ul>
+                                        @foreach (var item in new DuLich.Models.mapDichVu().DanhSach("B"))
+                                        {
+                                            <li>@item.TenDichVu</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="flag4" class="block-detail-tour">
+                                <h3 class="block-detail-title">
+                                    <i class="fa fa-file-text-o"></i> Ghi chú
+                                </h3>
+                                @if (lichtrinh == null)
+                                {
+                                    <h6>Không có ghi chú</h6>
+                                }
+                                else
+                                {
+                                    @Html.Raw(lichtrinh.GhiChu)
+                                }
+                            </div>
+                            <div id="flag5" class="block-detail-tour">
+                                <h3 class="block-detail-title">
+                                    <i class="fa fa-comment"></i> Bình luận
+                                </h3>
+                                <div class="block-detail-tour-content">
+                                    <div class="fb-comments" data-href="https://vivuviet.vn/tour/du-lich-mu-cang-chai-2-ngay-1-dem/" data-width="100%" data-numposts="5"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tour-sidebar large-4 col">
+                            <div class="boxDesign1">
+                                <div class="name">Du Lịch Mù Căng Chải 2 ngày 1 đêm</div>
+                                <div class="attr">
+                                    <ul>
+                                        <li>
+                                            <div class="at">Mã tour</div>
+                                            <div class="as">@Model.ID</div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Số ngày đi tour:</div>
+                                            <div class="as">@Model.SoNgayDiTour Ngày</div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Lịch định kỳ:</div>
+                                            <div class="as">@Model.LichDinhKy</div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Số người tối đa / Tour:</div>
+                                            <div class="as">@Model.SoNguoiToiDa</div>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                <div style="float:unset" class="at">
+                                                    Số lượng (Người lớn và trẻ em + lại không được quá @Model.SoNguoiToiDa người)
+                                                </div>
+                                                <div class="as">
+                                                    <h4>Người lớn:</h4>
+                                                    <input id="nguoilon" type="number" value="1" min="1" max="@Model.SoNguoiToiDa" />
+                                                    <h4>Trẻ em (5-9 tuổi và cao từ 100-140cm):</h4>
+                                                    <input id="treem" type="number" value="1" min="1" max="@Model.SoNguoiToiDa" />
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Khởi hành:</div>
+                                            <div class="as">@Model.GioKhoiHanh</div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Khách Sạn:</div>
+                                            <div class="as">
+                                                <select id="phuongtien" name="idPhuongTien" class="form-dropdown" style="width:150px" data-component="dropdown" required="" aria-label="Vehicle Type">
+                                                    <option value="">Select</option>
+                                                    @foreach (var item in new DuLich.Models.mapKhachSan().DanhSach())
+                                                    {
+                                                        <option value="@item.ID_KhachSan">@item.TenKhachSan | Giá: @item.GiaPhong</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Di chuyển:</div>
+                                            <div class="as">
+                                                <select id="phuongtien" name="idPhuongTien" class="form-dropdown" style="width:150px" data-component="dropdown" required="" aria-label="Vehicle Type">
+                                                    <option value="">Select</option>
+                                                    @foreach (var item in new DuLich.Models.mapPhuongTien().DanhSachPhuongTien(Model.DiChuyen))
+                                                    {
+                                                        <option value="@Model.DiChuyen">@item.Ten | Giá: @item.Gia/@item.DonVi</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Xuất phát:</div>
+                                            <div class="as">Từ @Model.DiemXuatPhat</div>
+                                        </li>
+                                        <li>
+                                            <div class="at">Điểm đến:</div>
+                                            <div class="as">Đến @Model.DiaDiem</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div style=" position: sticky; top: 0">
+                                <div class="boxFix">
+                                    <div class="boxPrice">
+                                        <div style="padding:4px" class="price">
+                                            <div class="txt">Giá tour:</div>
+                                            <div class="red" id="giactt">@string.Format("{0:#,0}", Model.GiaTour / Model.SoNguoiToiDa) đ/Người</div>
+                                        </div>
+                                        <div style="padding:4px" class="price">
+                                            <div class="txt">Chưa cộng phí di chuyển, khách sạn</div>
+                                        </div>
+                                        <div style="padding:4px" class="price">
+                                            <div class="txt">Chưa khấu trừ phí trẻ em dưới 10 tuổi</div>
+                                        </div>
+                                        <div class="bot" style="padding-top: 0;">
+                                            @if (user != null && Request.Cookies["user-dulich"] != null)
+                                            {
+                                                <div class="btn-booking dt"><a href="#" class="btn-order-tour" onclick="return theFunction(this)">ĐẶT TOUR</a></div>
+                                            }
+                                            else
+                                            {
+                                                <div class="btn-booking dt"><a href="#" class="btn-order-tour" onclick="if (confirm('Bạn chưa đang nhập! Có muốn đăng nhập không?')) { location.href = '/TaiKhoanHome/FormDangNhap' }">ĐẶT TOUR</a></div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="boxDesign2">
+                                        <ul>
+                                            <li class=""><a href="#flag1">Điểm nhấn hành trình</a></li>
+                                            <li class=""><a href="#flag2">Lịch trình</a></li>
+                                            <li class=""><a href="#flag3">Dịch vụ bao gồm và không bao gồm</a></li>
+                                            <li class=""><a href="#flag4">Ghi chú</a></li>
+                                            <li class=""><a href="#flag5">Bình luận</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function theFunction() {
+        var nguoilon = Number(document.getElementById("nguoilon").value);
+        var treem = Number(document.getElementById("treem").value);
+        var soluong = Number(nguoilon + treem);
+
+        if (soluong <= @Model.SoNguoiToiDa) {
+            location.assign("/TourDuLich/DatTour?idTour=@Model.ID&nguoilon=" + nguoilon + "&treem=" + treem + "&phuongtien=@Model.DiChuyen");
+        }else {
+            return alert('Số lượng hành khách không được vượt quá ' + @Model.SoNguoiToiDa);
+        }
+    }
+</script>
+<!-- #mobile-menu -->
+<div id='fb-root'></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class='fb-customerchat'
+     attribution="wordpress"
+     page_id='110809980305522'>
+</div>
+
+
+
+
+
+
+
+

@@ -48,6 +48,7 @@ namespace DuLich.Models
         public virtual DbSet<TourDuLich> TourDuLiches { get; set; }
         public virtual DbSet<TinTuc> TinTucs { get; set; }
         public virtual DbSet<DatTour> DatTours { get; set; }
+        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
     
         public virtual ObjectResult<spTimkiemTour_Result> spTimkiemTour(Nullable<int> idTinh, Nullable<int> idLoaiTour, Nullable<int> idMucGia)
         {

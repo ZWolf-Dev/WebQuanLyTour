@@ -21,6 +21,7 @@ namespace DuLich.Models
             this.Sliders = new HashSet<Slider>();
             this.Tour_KieuTour = new HashSet<Tour_KieuTour>();
             this.DichVus = new HashSet<DichVu>();
+            this.BinhLuans = new HashSet<BinhLuan>();
         }
     
         public int ID { get; set; }
@@ -58,5 +59,7 @@ namespace DuLich.Models
         public virtual ICollection<Tour_KieuTour> Tour_KieuTour { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DichVu> DichVus { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
     }
 }

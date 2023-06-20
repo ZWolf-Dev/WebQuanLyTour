@@ -1,0 +1,106 @@
+﻿@model List<DuLich.Models.TourDuLich>
+@*@model List<DuLich.Models.spTimkiemTour_Result>*@
+@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/Shared/layout.cshtml";
+}
+
+<div class="main">
+    <div class="main__slide_offers">
+        <div class="home_slide__item">
+            <div class="home_slide__background"
+                 style="background-image: url(styles/images/about_slide.jpg)"></div>
+            <div class="home__content">
+                <div class="home__title animated bounceInDown">
+                    Kết Quả Tìm Kiếm
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- search -->
+    <div class="main_search">
+        <div id="tabs" class="main_search__tabs">
+            <div id="tabs-1" class="tabs_content animated fadeIn">
+                @*form tìm kiếm*@
+                <form action="~/TourDuLich/KetQuaTimKiem" method="get" class="search_content">
+                    <div class="search_content__item">
+                        <div>Loại Tour</div>
+                        <select name="idLoaiTour" class="search_content__input">
+                            <option value="">Tất cả loại tour</option>
+                            @foreach (var item in new DuLich.Models.mapLoaiTour().DanhSachLoaiTour())
+                            {
+                                <option value="@item.ID_LoaiTour" @Html.Raw(item.ID_LoaiTour == ViewBag.idLoaiTour ? "selected" : "")>@item.LoaiTour1</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="search_content__item">
+                        <div>Địa điểm</div>
+                        <select name="idTinh" class="search_content__input">
+                            <option value="">Tất cả các tỉnh</option>
+                            @foreach (var item in new DuLich.Models.mapTinhThanh().DanhSachTheoTen())
+                            {
+                                <option value="@item.ID_Tinh" @Html.Raw(item.ID_Tinh == ViewBag.idTinh ? "selected" : "")>@item.Ten</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="search_content__item">
+                        <div>Mức Giá</div>
+                        <select name="idMucGia" class="search_content__input">
+                            <option value="">Tất cả mức giá</option>
+                            @foreach (var item in new DuLich.Models.mapMucGia().DanhSachMucGia())
+                            {
+                                <option value="@item.ID_Gia" @Html.Raw(item.ID_Gia == ViewBag.idMucGia ? "selected" : "")>@item.MucGia</option>
+                            }
+                        </select>
+                    </div>
+                    <button class="button search_content__button">
+                        Tìm kiếm <span></span><span></span><span></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Offers-->
+    <div class="main_offers">
+        <div class="box main_offers__box">
+            <div class="offers_items">
+                @foreach (var item in Model)
+                {
+                    <div class="offers_item">
+                        <div class="offers_image">
+                            <div class="offers_image_background" style="background-image: url(@item.HinhAnh)"></div>
+                            <div class="offers_name"><a href="~/TourDuLich/ChiTiet?idTour=@item.ID&idAlbum=@item.IdAlbum">@item.TieuDe</a></div>
+                        </div>
+                        <div class="offers_content">
+                            <div class="offers_price">@string.Format("{0:#,0}", item.GiaTour) đ/Tour</div>
+                            <h3 style="color: crimson; font-weight: bold;">@string.Format("{0:#,0}", item.GiaTour / item.SoNguoiToiDa) đ/Người </h3>
+                            <h3>Số người tối đa: @item.SoNguoiToiDa</h3>
+                            <div class="rating rating_4 offers_rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="offers_text">
+                                @Html.Raw(@item.BaiViet)
+                            </p>
+                            <div class="icons">
+                                <ul class="icons">
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/post.png" alt=""></li>
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/compass.png" alt=""></li>
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/bicycle.png" alt=""></li>
+                                    <li class="offers_icons_item"><img src="/Content/styles/images/sailboat.png" alt=""></li>
+                                </ul>
+                            </div>
+                            <div class="offers_link"><a href="~/TourDuLich/ChiTiet?idTour=@item.ID&idAlbum=@item.IdAlbum">Đọc thêm</a></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
