@@ -28,7 +28,7 @@
           <Property Name="NoiDung" Type="nvarchar" MaxLength="2048" />
           <Property Name="idReply" Type="int" />
           <Property Name="Cap" Type="int" />
-          <Property Name="NgayDang" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayDang" Type="datetime" />
           <Property Name="TinhTrang" Type="int" />
         </EntityType>
         <EntityType Name="CamNangDuLich">
@@ -1271,13 +1271,13 @@
           <Property Name="LuotChiaSe" Type="Int32" />
           <Property Name="NoiDung" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
           <Property Name="idReply" Type="Int32" />
-          <Property Name="NgayDang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cap" Type="Int32" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
           <Property Name="TinhTrang" Type="Int32" />
           <NavigationProperty Name="BinhLuan1" Relationship="DuLichDBModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
           <NavigationProperty Name="BinhLuan2" Relationship="DuLichDBModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
           <NavigationProperty Name="TaiKhoan" Relationship="DuLichDBModel.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
           <NavigationProperty Name="TourDuLich" Relationship="DuLichDBModel.FK_BinhLuan_TourDuLich" FromRole="BinhLuan" ToRole="TourDuLich" />
-          <Property Name="Cap" Type="Int32" />
         </EntityType>
         <Association Name="FK_BinhLuan_BinhLuan">
           <End Type="DuLichDBModel.BinhLuan" Role="BinhLuan" Multiplicity="0..1" />
@@ -1617,9 +1617,9 @@
           <EntitySetMapping Name="BinhLuans">
             <EntityTypeMapping TypeName="DuLichDBModel.BinhLuan">
               <MappingFragment StoreEntitySet="BinhLuan">
-                <ScalarProperty Name="Cap" ColumnName="Cap" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="Cap" ColumnName="Cap" />
                 <ScalarProperty Name="idReply" ColumnName="idReply" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="LuotChiaSe" ColumnName="LuotChiaSe" />

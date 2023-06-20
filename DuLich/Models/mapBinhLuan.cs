@@ -7,18 +7,17 @@ namespace DuLich.Models
 {
     public class mapBinhLuan
     {
-        public string massage = "";
+        public string message = "";
         DuLichDBEntities db = new DuLichDBEntities();
         public List<BinhLuan> DanhSach()
         {
             return db.BinhLuans.ToList();
         }
-        public List<BinhLuan> DanhSachTop5(int cap, int maTour)
+        public List<BinhLuan> DanhSachTop5(int cap, int maTour,int? MaBinhLuan)
         {
             var data =(from s in db.BinhLuans
-                       where (s.Cap == cap)
-                       & (s.MaTour == maTour)
-                       orderby s.LuotThich
+                       where  (s.MaTour == maTour) & (s.Cap == cap) &(s.idReply == MaBinhLuan)
+                       orderby s.NgayDang
                        select s).Take(5);
             return data.ToList();
         }
@@ -29,14 +28,26 @@ namespace DuLich.Models
                         select s).Count();
             return data;
         }
-        public bool ThemMoi(BinhLuan model)
+        public bool ThemMoi(BinhLuan model, int? idBinhLuan, int maTour, string MaTaiKhoan, string NoiDung)
         {
             try
             {
-                if (string.IsNullOrEmpty(model.MaTaiKhoan) == true)
+                if (idBinhLuan.Equals(null))
                 {
-                    massage = "Thiếu thông tin mức giá.";
-                    return false;
+                    model.MaTour = maTour;
+                    model.MaTaiKhoan = MaTaiKhoan;
+                    model.NoiDung = NoiDung;
+                    model.NgayDang = DateTime.Now;
+                    model.Cap = 1;
+                }
+                else
+                {
+                    model.MaTour = maTour;
+                    model.MaTaiKhoan = MaTaiKhoan;
+                    model.NoiDung = NoiDung;
+                    model.NgayDang = DateTime.Now;
+                    model.idReply = idBinhLuan;
+                    model.Cap = 2;
                 }
                 db.BinhLuans.Add(model);
                 db.SaveChanges();
@@ -47,6 +58,7 @@ namespace DuLich.Models
                 return false;
             }
         }
+       
         public bool CapNhat(BinhLuan model)
         {
             try

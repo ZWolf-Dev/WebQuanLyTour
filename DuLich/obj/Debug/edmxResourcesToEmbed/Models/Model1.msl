@@ -293,9 +293,9 @@
     <EntitySetMapping Name="BinhLuans">
       <EntityTypeMapping TypeName="DuLichDBModel.BinhLuan">
         <MappingFragment StoreEntitySet="BinhLuan">
-          <ScalarProperty Name="Cap" ColumnName="Cap" />
           <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
           <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="Cap" ColumnName="Cap" />
           <ScalarProperty Name="idReply" ColumnName="idReply" />
           <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
           <ScalarProperty Name="LuotChiaSe" ColumnName="LuotChiaSe" />

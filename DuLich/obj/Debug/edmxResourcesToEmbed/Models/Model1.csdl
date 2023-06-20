@@ -618,13 +618,13 @@
     <Property Name="LuotChiaSe" Type="Int32" />
     <Property Name="NoiDung" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
     <Property Name="idReply" Type="Int32" />
-    <Property Name="NgayDang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cap" Type="Int32" />
+    <Property Name="NgayDang" Type="DateTime" Precision="3" />
     <Property Name="TinhTrang" Type="Int32" />
     <NavigationProperty Name="BinhLuan1" Relationship="DuLichDBModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
     <NavigationProperty Name="BinhLuan2" Relationship="DuLichDBModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
     <NavigationProperty Name="TaiKhoan" Relationship="DuLichDBModel.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
     <NavigationProperty Name="TourDuLich" Relationship="DuLichDBModel.FK_BinhLuan_TourDuLich" FromRole="BinhLuan" ToRole="TourDuLich" />
-    <Property Name="Cap" Type="Int32" />
   </EntityType>
   <Association Name="FK_BinhLuan_BinhLuan">
     <End Type="DuLichDBModel.BinhLuan" Role="BinhLuan" Multiplicity="0..1" />

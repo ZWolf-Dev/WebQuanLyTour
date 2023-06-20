@@ -1652,6 +1652,7 @@
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\TinhThanhController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourController.cs" />
+    <Compile Include="Controllers\BinhLuanController.cs" />
     <Compile Include="Controllers\DichVuController.cs" />
     <Compile Include="Controllers\CamNangDuLichController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

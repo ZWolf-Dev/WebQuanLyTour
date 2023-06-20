@@ -42,7 +42,7 @@
         <EntityTypeShape EntityType="DuLichDBModel.DatTour" Width="1.5" PointX="12" PointY="14.75" />
         <AssociationConnector Association="DuLichDBModel.FK_DatTour_TaiKhoan" />
         <AssociationConnector Association="DuLichDBModel.FK_DatTourDetail_DatTour" />
-        <EntityTypeShape EntityType="DuLichDBModel.BinhLuan" Width="1.5" PointX="15" PointY="5.625" />
+        <EntityTypeShape EntityType="DuLichDBModel.BinhLuan" Width="1.5" PointX="15" PointY="5.875" />
         <AssociationConnector Association="DuLichDBModel.FK_BinhLuan_BinhLuan" />
         <AssociationConnector Association="DuLichDBModel.FK_BinhLuan_TaiKhoan" />
         <AssociationConnector Association="DuLichDBModel.FK_BinhLuan_TourDuLich" />

@@ -28,9 +28,9 @@ namespace DuLich.Models
         public Nullable<int> LuotChiaSe { get; set; }
         public string NoiDung { get; set; }
         public Nullable<int> idReply { get; set; }
-        public string NgayDang { get; set; }
-        public Nullable<int> TinhTrang { get; set; }
         public Nullable<int> Cap { get; set; }
+        public Nullable<System.DateTime> NgayDang { get; set; }
+        public Nullable<int> TinhTrang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuan1 { get; set; }

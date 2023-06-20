@@ -23,7 +23,7 @@
     <Property Name="NoiDung" Type="nvarchar" MaxLength="2048" />
     <Property Name="idReply" Type="int" />
     <Property Name="Cap" Type="int" />
-    <Property Name="NgayDang" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgayDang" Type="datetime" />
     <Property Name="TinhTrang" Type="int" />
   </EntityType>
   <EntityType Name="CamNangDuLich">

@@ -227,6 +227,10 @@ namespace DuLich.Controllers
         {
             return View();
         }
+        public PartialViewResult CommentForm()
+        {
+            return PartialView();
+        }
     }
 }
 

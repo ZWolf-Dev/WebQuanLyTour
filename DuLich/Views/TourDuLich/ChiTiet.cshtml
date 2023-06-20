@@ -8,7 +8,7 @@
 }
 
 <link href="~/Content/styles/css/flatsome.css" rel="stylesheet" />
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <!--Offers-->
 <div class="main_offers" style="padding-top:0">
@@ -146,7 +146,7 @@
                                     <i class="fa fa-comment"></i> Bình luận (@(new DuLich.Models.mapBinhLuan().SoLuongBL(Model.ID)))
                                 </h3>
                                 <div class="card">
-                                    @foreach (var bl in new DuLich.Models.mapBinhLuan().DanhSachTop5(1, Model.ID))
+                                    @foreach (var bl in new DuLich.Models.mapBinhLuan().DanhSachTop5(1, Model.ID, null))
                                     {
                                         <div style="padding: 1em;" class="d-flex flex-start">
                                             <img class="rounded-circle shadow-1-strong me-3"
@@ -157,6 +157,7 @@
                                                         <p style="color: #007bff !important; font-weight: bold;" class="mb-1">
                                                             @(new DuLich.Models.mapTaiKhoan().ChiTiet(bl.MaTaiKhoan).TenHienThi) <span class="small">- @bl.NgayDang</span>
                                                         </p>
+                                                        <button style="color: #007bff !important" onclick="comment(@bl.MaBinhLuan)"  class="w3-button">Reply</button>
                                                     </div>
                                                     <p class="small mb-0">
                                                         @bl.NoiDung
@@ -178,7 +179,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                                @foreach (var bl1 in new DuLich.Models.mapBinhLuan().DanhSachTop5(2, Model.ID))
+                                                @foreach (var bl1 in new DuLich.Models.mapBinhLuan().DanhSachTop5(2, Model.ID, bl.MaBinhLuan))
                                                 {
                                                     <div class="d-flex flex-start mt-4">
                                                         <a class="me-3" href="#">
@@ -191,23 +192,21 @@
                                                                     <p style="color: #007bff !important; font-weight: bold;" class="mb-1">
                                                                         @(new DuLich.Models.mapTaiKhoan().ChiTiet(bl1.MaTaiKhoan).TenHienThi) <span class="small">- @bl1.NgayDang</span>
                                                                     </p>
+                                                                    <button style="color: #007bff !important" onclick="document.getElementById('id01').style.display='block'" class="w3-button">Reply</button>
                                                                 </div>
                                                                 <p class="small mb-0">
                                                                     @bl1.NoiDung
                                                                 </p>
                                                                 <div class="small d-flex justify-content-start">
                                                                     <a href="#!" class="d-flex align-items-center me-3">
-                                                                        <i class="far fa-thumbs-up me-2"></i>
                                                                         <p style="color: #007bff !important;" class="mb-0">Like (@bl1.LuotThich)</p>
                                                                     </a>
                                                                     &nbsp;&nbsp;
                                                                     <a href="#!" class="d-flex align-items-center me-3">
-                                                                        <i class="far fa-comment-dots me-2"></i>
                                                                         <p style="color: #007bff !important;" class="mb-0">Comment (@bl1.LuotTraLoi)</p>
                                                                     </a>
                                                                     &nbsp;&nbsp;
                                                                     <a href="#!" class="d-flex align-items-center me-3">
-                                                                        <i class="fas fa-share me-2"></i>
                                                                         <p style="color: #007bff !important;" class="mb-0">Share (@bl1.LuotChiaSe)</p>
                                                                     </a>
                                                                 </div>
@@ -219,17 +218,31 @@
                                         </div>
                                     }
                                     <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
-                                        <div class="d-flex flex-start w-100">
-                                            <div class="form-outline w-100">
-                                                <textarea class="form-control" id="textAreaExample" rows="4"
-                                                          style="background: #fff;"></textarea>
-                                                <label class="form-label" for="textAreaExample">Message</label>
+                                        @using (Html.BeginForm("Create", "BinhLuan", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="d-flex flex-start w-100">
+                                                <div class="form-outline w-100">
+                                                    <textarea name="NoiDung" class="form-control" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
+                                                    <label class="form-label" for="textAreaExample">Message</label>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="float-end mt-2 pt-1">
-                                            <button type="button" class="btn btn-primary btn-sm">Post comment</button>
-                                            <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
-                                        </div>
+
+                                            <div class="float-end mt-2 pt-1">
+                                                @if (user != null && Request.Cookies["user-dulich"] != null)
+                                                {
+                                                    <input name="maTour" value="@Model.ID" hidden />
+                                                    <input name="idAlbum" value="@Model.IdAlbum" hidden />
+                                                    <input name="MaTaiKhoan" value="@user.TenDangNhap" hidden />
+                                                    <input name="idBinhLuan" value="" hidden />
+                                                    <button type="submit" class="btn btn-primary btn-sm">Đăng</button>
+                                                }
+                                                else
+                                                {
+                                                    <div class="btn-booking dt"><a href="#" class="btn-order-tour" onclick="if (confirm('Bạn chưa đang nhập! Có muốn đăng nhập không?')) { location.href = '/TaiKhoanHome/FormDangNhap' }">Đăng</a></div>
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </div>
 
@@ -347,8 +360,8 @@
                             </div>
                         </div>
                     </div>
-                                </div>
-                            </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -366,12 +379,49 @@
             return alert('Số lượng hành khách không được vượt quá ' + @Model.SoNguoiToiDa);
         }
     }
+    function comment(mbl) {
+        document.getElementById('id01').style.display = 'block';
+         document.getElementById('idBL').value = mbl;
+    }
 </script>
 
 
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
 
+            <div class="card-footer py-3 border-0" style="right: 2em; background-color: #f8f9fa;">
+                @using (Html.BeginForm("Create", "BinhLuan", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="d-flex flex-start w-100">
+                        <div class="form-outline w-100">
+                            <textarea name="NoiDung" class="form-control" id="z" rows="4" style="background: #fff;"></textarea>
+                            <label class="form-label" for="textAreaExample">Message</label>
+                        </div>
+                    </div>
 
+                    <div class="float-end mt-2 pt-1">
+                        @if (user != null && Request.Cookies["user-dulich"] != null)
+                        {
+                            <input name="maTour" value="@Model.ID" hidden />
+                            <input name="idAlbum" value="@Model.IdAlbum" hidden />
+                            <input name="MaTaiKhoan" value="@user.TenDangNhap" hidden />
+                            <input name="idBinhLuan" id="idBL" value="" hidden />
+                            <button type="submit" class="btn btn-primary btn-sm">Đăng</button>
+                        }
+                        else
+                        {
+                            <div class="btn-booking dt"><a href="#" class="btn-order-tour" onclick="if (confirm('Bạn chưa đang nhập! Có muốn đăng nhập không?')) { location.href = '/TaiKhoanHome/FormDangNhap' }">Đăng</a></div>
+                        }
+                    </div>
+                }
+            </div>
 
+        </div>
+    </div>
+</div>
 
 
 
