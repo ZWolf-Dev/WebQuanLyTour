@@ -15,11 +15,13 @@ namespace DuLich.Models
         }
         public List<BinhLuan> DanhSachTop5(int cap, int maTour,int? MaBinhLuan)
         {
-            var data =(from s in db.BinhLuans
-                       where  (s.MaTour == maTour) & (s.Cap == cap) &(s.idReply == MaBinhLuan)
-                       orderby s.NgayDang
-                       select s).Take(5);
-            return data.ToList();
+
+                var data = (from s in db.BinhLuans
+                            where (s.MaTour == maTour) & (s.Cap == cap) & (s.idReply == MaBinhLuan)
+                            orderby s.NgayDang
+                            select s).Take(5);
+                return data.ToList();
+            
         }
         public int SoLuongBL(int maTour)
         {
@@ -59,19 +61,38 @@ namespace DuLich.Models
             }
         }
        
-        public bool CapNhat(BinhLuan model)
+        public bool CapNhat(int? MaBinhLuan, int? LuotThich,int? LuotTraLoi, int? LuotChiaSe, string loai)
         {
             try
             {
-                var updateModel = db.BinhLuans.Find(model.MaBinhLuan);
+                var updateModel = db.BinhLuans.Find(MaBinhLuan);
                 //kiểm tra null
                 if (updateModel == null)
                 {
                     return false;
                 }
                 //cập nhật gt cho các trường
-                updateModel.NoiDung = model.NoiDung;
-
+                if (loai.Equals("Like"))
+                {
+                    if (LuotThich.Equals(null))
+                        updateModel.LuotThich = 1;
+                    else
+                        updateModel.LuotThich = LuotThich + 1;
+                }
+                if (loai.Equals("Comment"))
+                {
+                    if (LuotTraLoi.Equals(null))
+                        updateModel.LuotTraLoi = 1;
+                    else
+                        updateModel.LuotTraLoi = LuotTraLoi + 1;
+                }
+                if(loai.Equals("Share"))
+                {
+                    if (LuotChiaSe.Equals(null))
+                        updateModel.LuotChiaSe = 1;
+                    else
+                        updateModel.LuotChiaSe = LuotChiaSe + 1;
+                }
                 db.SaveChanges();
                 return true;
             }
@@ -94,7 +115,7 @@ namespace DuLich.Models
                 return false;
             }
         }
-        public BinhLuan ChiTiet(int MaBinhLuan)
+        public BinhLuan ChiTiet(int? MaBinhLuan)
         {
             //tìm đối tượng có khóa là kiểu số, 1 khóa
             return db.BinhLuans.Find(MaBinhLuan);

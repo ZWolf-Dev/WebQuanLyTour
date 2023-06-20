@@ -15,7 +15,15 @@ namespace DuLich.Controllers
         {
             mapBinhLuan map = new mapBinhLuan();
             map.ThemMoi(model, idBinhLuan, maTour, MaTaiKhoan, NoiDung);
+            //Update(maTour, idAlbum, idBinhLuan, LuotTraLoi, loai)
             return RedirectToAction("ChiTiet", "TourDuLich", new { idTour = maTour, idAlbum = idAlbum });
         }
+        public ActionResult Update(int? MaBinhLuan, int? LuotThich, int? LuotTraLoi, int? LuotChiaSe, int maTour, int idAlbum, string loai)
+        {
+            mapBinhLuan map = new mapBinhLuan();
+            map.CapNhat(MaBinhLuan, LuotThich, LuotTraLoi, LuotChiaSe, loai);
+            return RedirectToAction("ChiTiet", "TourDuLich", new { idTour = maTour, idAlbum = idAlbum });
+        }
+
     }
 }

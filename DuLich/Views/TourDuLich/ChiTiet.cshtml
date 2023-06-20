@@ -148,67 +148,90 @@
                                 <div class="card">
                                     @foreach (var bl in new DuLich.Models.mapBinhLuan().DanhSachTop5(1, Model.ID, null))
                                     {
+                                        var tkbl = new DuLich.Models.mapTaiKhoan().ChiTiet(bl.MaTaiKhoan);
                                         <div style="padding: 1em;" class="d-flex flex-start">
                                             <img class="rounded-circle shadow-1-strong me-3"
-                                                 src="@(new DuLich.Models.mapTaiKhoan().ChiTiet(bl.MaTaiKhoan).HinhAnh)" alt="avatar" style="width: 4em; height: 4em;" /> &nbsp;&nbsp;
+                                                 src="@tkbl.HinhAnh" alt="avatar" style="width: 4em; height: 4em;" /> &nbsp;&nbsp;
                                             <div class="flex-grow-1 flex-shrink-1">
                                                 <div>
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <p style="color: #007bff !important; font-weight: bold;" class="mb-1">
-                                                            @(new DuLich.Models.mapTaiKhoan().ChiTiet(bl.MaTaiKhoan).TenHienThi) <span class="small">- @bl.NgayDang</span>
+                                                            @tkbl.TenHienThi <span class="small">- @bl.NgayDang</span>
                                                         </p>
-                                                        <button style="color: #007bff !important" onclick="comment(@bl.MaBinhLuan)"  class="w3-button">Reply</button>
                                                     </div>
                                                     <p class="small mb-0">
                                                         @bl.NoiDung
                                                     </p>
                                                     <div class="small d-flex justify-content-start">
-                                                        <a href="#!" class="d-flex align-items-center me-3">
-                                                            <i class="far fa-thumbs-up me-2"></i>
-                                                            <p style="color: #007bff !important;" class="mb-0">Like (@bl.LuotThich)</p>
-                                                        </a>
+
+                                                        @using (Html.BeginForm("Update", "BinhLuan", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            <input name="maTour" value="@Model.ID" hidden />
+                                                            <input name="idAlbum" value="@Model.IdAlbum" hidden />
+                                                            <input name="MaBinhLuan" value="@bl.MaBinhLuan" hidden />
+                                                            <input name="LuotThich" value="@bl.LuotThich" hidden />
+                                                            <input name="loai" value="Like" hidden />
+                                                            <button style="color: #007bff !important" class="w3-button">Like (@bl.LuotThich)</button>
+                                                        }
+
                                                         &nbsp;&nbsp;
-                                                        <a href="#!" class="d-flex align-items-center me-3">
-                                                            <i class="far fa-comment-dots me-2"></i>
-                                                            <p style="color: #007bff !important;" class="mb-0">Comment (@bl.LuotTraLoi)</p>
-                                                        </a>
+                                                        <button style="color: #007bff !important" onclick="comment('@bl.MaBinhLuan', '@tkbl.TenHienThi')" class="w3-button">Comment (@bl.LuotTraLoi)</button>
                                                         &nbsp;&nbsp;
-                                                        <a href="#!" class="d-flex align-items-center me-3">
-                                                            <i class="fas fa-share me-2"></i>
-                                                            <p style="color: #007bff !important;" class="mb-0">Share (@bl.LuotChiaSe)</p>
-                                                        </a>
+                                                        @using (Html.BeginForm("Update", "BinhLuan", FormMethod.Post))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            <input name="maTour" value="@Model.ID" hidden />
+                                                            <input name="idAlbum" value="@Model.IdAlbum" hidden />
+                                                            <input name="MaBinhLuan" value="@bl.MaBinhLuan" hidden />
+                                                            <input name="LuotChiaSe" value="@bl.LuotChiaSe" hidden />
+                                                            <input name="loai" value="Share" hidden />
+                                                            <button style="color: #007bff !important" class="w3-button">Share (@bl.LuotChiaSe)</button>
+                                                        }
                                                     </div>
                                                 </div>
                                                 @foreach (var bl1 in new DuLich.Models.mapBinhLuan().DanhSachTop5(2, Model.ID, bl.MaBinhLuan))
                                                 {
+                                                    var tkbl1 = new DuLich.Models.mapTaiKhoan().ChiTiet(bl1.MaTaiKhoan);
                                                     <div class="d-flex flex-start mt-4">
                                                         <a class="me-3" href="#">
                                                             <img class="rounded-circle shadow-1-strong"
-                                                                 src="@(new DuLich.Models.mapTaiKhoan().ChiTiet(bl1.MaTaiKhoan).HinhAnh)" alt="avatar" style="width: 4em; height: 4em;" /> &nbsp;&nbsp;
+                                                                 src="@tkbl1.HinhAnh" alt="avatar" style="width: 4em; height: 4em;" /> &nbsp;&nbsp;
                                                         </a>
                                                         <div class="flex-grow-1 flex-shrink-1">
                                                             <div>
                                                                 <div class="d-flex justify-content-between align-items-center">
                                                                     <p style="color: #007bff !important; font-weight: bold;" class="mb-1">
-                                                                        @(new DuLich.Models.mapTaiKhoan().ChiTiet(bl1.MaTaiKhoan).TenHienThi) <span class="small">- @bl1.NgayDang</span>
+                                                                        @tkbl1.TenHienThi <span class="small">- @bl1.NgayDang</span>
                                                                     </p>
-                                                                    <button style="color: #007bff !important" onclick="document.getElementById('id01').style.display='block'" class="w3-button">Reply</button>
                                                                 </div>
                                                                 <p class="small mb-0">
                                                                     @bl1.NoiDung
                                                                 </p>
                                                                 <div class="small d-flex justify-content-start">
-                                                                    <a href="#!" class="d-flex align-items-center me-3">
-                                                                        <p style="color: #007bff !important;" class="mb-0">Like (@bl1.LuotThich)</p>
-                                                                    </a>
+                                                                    @using (Html.BeginForm("Update", "BinhLuan", FormMethod.Post))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+                                                                        <input name="maTour" value="@Model.ID" hidden />
+                                                                        <input name="idAlbum" value="@Model.IdAlbum" hidden />
+                                                                        <input name="MaBinhLuan" value="@bl1.MaBinhLuan" hidden />
+                                                                        <input name="LuotThich" value="@bl1.LuotThich" hidden />
+                                                                        <input name="loai" value="Like" hidden />
+                                                                        <button style="color: #007bff !important" class="w3-button">Like (@bl1.LuotThich)</button>
+                                                                    }
                                                                     &nbsp;&nbsp;
-                                                                    <a href="#!" class="d-flex align-items-center me-3">
-                                                                        <p style="color: #007bff !important;" class="mb-0">Comment (@bl1.LuotTraLoi)</p>
-                                                                    </a>
+                                                                    <button style="color: #007bff !important" onclick="comment('@bl.MaBinhLuan', '@tkbl1.TenHienThi')" class="w3-button">Comment (@bl1.LuotTraLoi)</button>
                                                                     &nbsp;&nbsp;
-                                                                    <a href="#!" class="d-flex align-items-center me-3">
-                                                                        <p style="color: #007bff !important;" class="mb-0">Share (@bl1.LuotChiaSe)</p>
-                                                                    </a>
+                                                                    @using (Html.BeginForm("Update", "BinhLuan", FormMethod.Post))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+                                                                        <input name="maTour" value="@Model.ID" hidden />
+                                                                        <input name="idAlbum" value="@Model.IdAlbum" hidden />
+                                                                        <input name="MaBinhLuan" value="@bl1.MaBinhLuan" hidden />
+                                                                        <input name="LuotChiaSe" value="@bl1.LuotChiaSe" hidden />
+                                                                        <input name="loai" value="Share" hidden />
+                                                                        <button style="color: #007bff !important" class="w3-button">Share (@bl1.LuotChiaSe)</button>
+                                                                    }
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -379,9 +402,10 @@
             return alert('Số lượng hành khách không được vượt quá ' + @Model.SoNguoiToiDa);
         }
     }
-    function comment(mbl) {
+    function comment(mbl, tenHT) {
+        document.getElementById('tagTen').innerHTML = '@@'+tenHT+' ';
         document.getElementById('id01').style.display = 'block';
-         document.getElementById('idBL').value = mbl;
+        document.getElementById('idBL').value = mbl;
     }
 </script>
 
@@ -397,7 +421,7 @@
                     @Html.AntiForgeryToken()
                     <div class="d-flex flex-start w-100">
                         <div class="form-outline w-100">
-                            <textarea name="NoiDung" class="form-control" id="z" rows="4" style="background: #fff;"></textarea>
+                            <textarea name="NoiDung" class="form-control" id="tagTen" rows="4" style="background: #fff;"></textarea>
                             <label class="form-label" for="textAreaExample">Message</label>
                         </div>
                     </div>
