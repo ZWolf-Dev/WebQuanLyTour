@@ -176,7 +176,7 @@
                                                         }
 
                                                         &nbsp;&nbsp;
-                                                        <button style="color: #007bff !important" onclick="comment('@bl.MaBinhLuan', '@tkbl.TenHienThi')" class="w3-button">Comment (@bl.LuotTraLoi)</button>
+                                                        <button style="color: #007bff !important" onclick="comment('@bl.MaBinhLuan', '@tkbl.TenHienThi',  '@bl.LuotTraLoi')" class="w3-button">Comment (@bl.LuotTraLoi)</button>
                                                         &nbsp;&nbsp;
                                                         @using (Html.BeginForm("Update", "BinhLuan", FormMethod.Post))
                                                         {
@@ -220,7 +220,7 @@
                                                                         <button style="color: #007bff !important" class="w3-button">Like (@bl1.LuotThich)</button>
                                                                     }
                                                                     &nbsp;&nbsp;
-                                                                    <button style="color: #007bff !important" onclick="comment('@bl.MaBinhLuan', '@tkbl1.TenHienThi')" class="w3-button">Comment (@bl1.LuotTraLoi)</button>
+                                                                    <button style="color: #007bff !important" onclick="comment('@bl.MaBinhLuan', '@tkbl1.TenHienThi',  '@bl.LuotTraLoi')" class="w3-button">Comment (@bl1.LuotTraLoi)</button>
                                                                     &nbsp;&nbsp;
                                                                     @using (Html.BeginForm("Update", "BinhLuan", FormMethod.Post))
                                                                     {
@@ -302,7 +302,7 @@
                                                     <h4>Người lớn:</h4>
                                                     <input id="nguoilon" type="number" value="1" min="1" max="@Model.SoNguoiToiDa" />
                                                     <h4>Trẻ em (5-9 tuổi và cao từ 100-140cm):</h4>
-                                                    <input id="treem" type="number" value="1" min="1" max="@Model.SoNguoiToiDa" />
+                                                    <input id="treem" type="number" value="0" min="0" max="@Model.SoNguoiToiDa" />
                                                 </div>
                                             </div>
                                         </li>
@@ -351,7 +351,7 @@
                                     <div class="boxPrice">
                                         <div style="padding:4px" class="price">
                                             <div class="txt">Giá tour:</div>
-                                            <div class="red" id="giactt">@string.Format("{0:#,0}", Model.GiaTour / Model.SoNguoiToiDa) đ/Người</div>
+                                            <div class="red" id="giactt">@string.Format("{0:#,0}", Model.GiaTour / Model.SoNgayDiTour) đ/Người</div>
                                         </div>
                                         <div style="padding:4px" class="price">
                                             <div class="txt">Chưa cộng phí di chuyển, khách sạn</div>
@@ -402,10 +402,11 @@
             return alert('Số lượng hành khách không được vượt quá ' + @Model.SoNguoiToiDa);
         }
     }
-    function comment(mbl, tenHT) {
+    function comment(mbl, tenHT, luotTL) {
         document.getElementById('tagTen').innerHTML = '@@'+tenHT+' ';
         document.getElementById('id01').style.display = 'block';
         document.getElementById('idBL').value = mbl;
+        document.getElementById('LTL').value = luotTL;
     }
 </script>
 
@@ -433,6 +434,7 @@
                             <input name="idAlbum" value="@Model.IdAlbum" hidden />
                             <input name="MaTaiKhoan" value="@user.TenDangNhap" hidden />
                             <input name="idBinhLuan" id="idBL" value="" hidden />
+                            <input name="LuotTraLoi" id="LTL" value="" hidden />
                             <button type="submit" class="btn btn-primary btn-sm">Đăng</button>
                         }
                         else

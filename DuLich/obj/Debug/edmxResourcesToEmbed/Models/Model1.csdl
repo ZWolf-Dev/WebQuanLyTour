@@ -577,6 +577,7 @@
     <NavigationProperty Name="DatTourDetails" Relationship="DuLichDBModel.FK_DatTourDetail_DatTour" FromRole="DatTour" ToRole="DatTourDetail" />
     <Property Name="SoLuongNguoiLon" Type="Int32" />
     <Property Name="SoLuongTreEm" Type="Int32" />
+    <Property Name="KhachSan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_DatTour_TaiKhoan">
     <End Type="DuLichDBModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1">

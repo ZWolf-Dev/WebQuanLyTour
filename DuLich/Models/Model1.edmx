@@ -66,6 +66,7 @@
           <Property Name="DiaChiTha" Type="nvarchar" MaxLength="500" />
           <Property Name="TourTuyChinh" Type="nvarchar" MaxLength="500" />
           <Property Name="LoaiXe" Type="nvarchar" MaxLength="500" />
+          <Property Name="KhachSan" Type="nvarchar" MaxLength="500" />
           <Property Name="SoLuongHanhKhach" Type="int" />
           <Property Name="SoLuongNguoiLon" Type="int" />
           <Property Name="SoLuongTreEm" Type="int" />
@@ -1230,6 +1231,7 @@
           <NavigationProperty Name="DatTourDetails" Relationship="DuLichDBModel.FK_DatTourDetail_DatTour" FromRole="DatTour" ToRole="DatTourDetail" />
           <Property Name="SoLuongNguoiLon" Type="Int32" />
           <Property Name="SoLuongTreEm" Type="Int32" />
+          <Property Name="KhachSan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_DatTour_TaiKhoan">
           <End Type="DuLichDBModel.TaiKhoan" Role="TaiKhoan" Multiplicity="0..1">
@@ -1595,6 +1597,7 @@
           <EntitySetMapping Name="DatTours">
             <EntityTypeMapping TypeName="DuLichDBModel.DatTour">
               <MappingFragment StoreEntitySet="DatTour">
+                <ScalarProperty Name="KhachSan" ColumnName="KhachSan" />
                 <ScalarProperty Name="SoLuongTreEm" ColumnName="SoLuongTreEm" />
                 <ScalarProperty Name="SoLuongNguoiLon" ColumnName="SoLuongNguoiLon" />
                 <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />

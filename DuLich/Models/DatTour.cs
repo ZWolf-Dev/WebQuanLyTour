@@ -36,6 +36,7 @@ namespace DuLich.Models
         public Nullable<bool> TrangThai { get; set; }
         public Nullable<int> SoLuongNguoiLon { get; set; }
         public Nullable<int> SoLuongTreEm { get; set; }
+        public string KhachSan { get; set; }
     
         public virtual TaiKhoan TaiKhoan1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

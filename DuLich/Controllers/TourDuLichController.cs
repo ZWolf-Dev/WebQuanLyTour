@@ -46,7 +46,6 @@ namespace DuLich.Controllers
             var tour = new mapTour().ChiTiet(idTour);
             return View(tour);
         }
-
         [KiemTraDangNhap]
         public ActionResult DatTour(int idTour, int? nguoilon, int? treem, string phuongtien)
         {
@@ -58,7 +57,7 @@ namespace DuLich.Controllers
         }
         //danh sach theo tinh
         [HttpPost]
-        public ActionResult DatTour(int idTour, string tenDangNhap, string firstName, string lastName, string email, int soDienThoai, int dayKH, int monthKH, int yearKH, int dayTV, int monthTV, int yearTV, string diaChiDon, string diaChiTha, string tourTuyChinh, int idPhuongTien, int nguoiLon, int treEm, string tinNhan)
+        public ActionResult DatTour(int idTour, string tenDangNhap, string firstName, string lastName, string email, int soDienThoai, int dayKH, int monthKH, int yearKH, int dayTV, int monthTV, int yearTV, string diaChiDon, string diaChiTha, string tourTuyChinh, int idPhuongTien, int idKhachSan, int nguoiLon, int treEm, string tinNhan)
         {
             DuLichDBEntities db = new DuLichDBEntities();
             var datTour = new DatTour();
@@ -73,6 +72,8 @@ namespace DuLich.Controllers
             datTour.TourTuyChinh = tourTuyChinh ?? null;
             var phuongTien = new mapPhuongTien().ChiTiet(idPhuongTien);
             datTour.LoaiXe = phuongTien.Ten;
+            var khachsan = new mapKhachSan().ChiTiet(idKhachSan);
+            datTour.KhachSan = khachsan.TenKhachSan;
             var soLuong = nguoiLon + treEm;
             datTour.SoLuongHanhKhach = soLuong;
             datTour.SoLuongNguoiLon = nguoiLon;
@@ -95,87 +96,51 @@ namespace DuLich.Controllers
                 //Xử lý giá
                 var TieuDe = new mapTour().ChiTiet(idTour).TieuDe;
                 var SoNguoiToiDa = new mapTour().ChiTiet(idTour).SoNguoiToiDa;
-                var SoNgayDiTour = new mapTour().ChiTiet(idTour).SoNgayDiTour;
-                var SNDTKhachHangNhap = dayTV - dayKH;
+                int SoNgayDiTour = (int)new mapTour().ChiTiet(idTour).SoNgayDiTour;
+                //var SNDTKhachHangNhap = dayTV - dayKH;
+                DateTime NgayKH = new DateTime(yearKH, monthKH, dayKH);
+                DateTime NgayTV = new DateTime(yearTV, monthTV, dayTV);
+                TimeSpan soNgay = NgayTV.Subtract(NgayKH);
+                int SNDTKhachHangNhap = (int)Math.Round(soNgay.TotalDays);
+                Console.WriteLine(SNDTKhachHangNhap);
                 var GiaTour = ((int)tour.GiaTour.GetValueOrDefault(0));
                 var GiaTB = GiaTour / SoNgayDiTour;
-                var Gia = GiaTour;
+                var GiaSNDTKhachHangNhap = GiaTB + phuongTien.Gia + (khachsan.GiaPhong * SNDTKhachHangNhap);
+                var GiaSNDTToiDa = GiaTB + phuongTien.Gia + (khachsan.GiaPhong * SoNgayDiTour);
+                var GiaTong = 0;
+                var GiaNL = 0;
+                var GiaTE = 0;
+            
 
-                if (phuongTien.DonVi != "Ngày")
+                if (SNDTKhachHangNhap == 0)
                 {
-                    if (phuongTien.DonVi == "Chuyến")
+                    if (treEm.Equals(0))
                     {
-                        if (SNDTKhachHangNhap == 0 && soLuong == SoNguoiToiDa)
-                        {
-                            Gia = GiaTour;
-                        }
-                        else
-                        {
-                            if (SNDTKhachHangNhap > SoNgayDiTour && soLuong > SoNguoiToiDa)
-                            {
-                                Gia = (int)(GiaTour - phuongTien.Gia + ((SNDTKhachHangNhap - SoNgayDiTour) * GiaTB) + (100000 * (soLuong - SoNguoiToiDa)));
-                            }
-                            else
-                            {
-                                Gia = (int)(GiaTour - phuongTien.Gia - ((SoNgayDiTour - SNDTKhachHangNhap) * GiaTB) - (100000 * (SoNguoiToiDa - soLuong)));
-                            }
-                        }
-                    }
-                    if (phuongTien.DonVi == "Người")
-                    {
-                        if (SNDTKhachHangNhap == 0 && soLuong == SoNguoiToiDa)
-                        {
-                            Gia = GiaTour;
-                        }
-                        else
-                        {
-                            if (SNDTKhachHangNhap > SoNgayDiTour && soLuong > SoNguoiToiDa)
-                            {
-                                Gia = (int)(GiaTour - (phuongTien.Gia * soLuong) + ((SNDTKhachHangNhap - SoNgayDiTour) * GiaTB) + (100000 * (soLuong - SoNguoiToiDa)));
-                            }
-                            else
-                            {
-                                Gia = (int)(GiaTour - (phuongTien.Gia * soLuong) - ((SoNgayDiTour - SNDTKhachHangNhap) * GiaTB) - (100000 * (SoNguoiToiDa - soLuong)));
-                            }
-                        }
-                    }
-                    if (phuongTien.DonVi == "Giờ")
-                    {
-                        if (SNDTKhachHangNhap == 0 && soLuong == SoNguoiToiDa)
-                        {
-                            Gia = GiaTour;
-                        }
-                        else
-                        {
-                            if (SNDTKhachHangNhap > SoNgayDiTour && soLuong > SoNguoiToiDa)
-                            {
-                                Gia = (int)(GiaTour - (phuongTien.Gia * (24 * (SNDTKhachHangNhap - SoNgayDiTour))) + ((SNDTKhachHangNhap - SoNgayDiTour) * GiaTB) + (100000 * (soLuong - SoNguoiToiDa)));
-                            }
-                            else
-                            {
-                                Gia = (int)(GiaTour - (phuongTien.Gia * (24 * (SoNgayDiTour - SNDTKhachHangNhap))) - ((SoNgayDiTour - SNDTKhachHangNhap) * GiaTB) - (100000 * (SoNguoiToiDa - soLuong)));
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (SNDTKhachHangNhap == 0 && soLuong == SoNguoiToiDa)
-                    {
-                        Gia = GiaTour;
+                        GiaNL = (int)GiaSNDTToiDa * nguoiLon;
                     }
                     else
                     {
-                        if (SNDTKhachHangNhap > SoNgayDiTour && soLuong > SoNguoiToiDa)
-                        {
-                            Gia = (int)(GiaTour - (phuongTien.Gia * (SNDTKhachHangNhap - SoNgayDiTour)) + ((SNDTKhachHangNhap - SoNgayDiTour) * GiaTB) + (100000 * (soLuong - SoNguoiToiDa)));
-                        }
-                        else
-                        {
-                            Gia = (int)(GiaTour - (phuongTien.Gia * (SoNgayDiTour - SNDTKhachHangNhap)) - ((SoNgayDiTour - SNDTKhachHangNhap) * GiaTB) - (100000 * (SoNguoiToiDa - soLuong)));
-                        }
+                        GiaNL = (int)GiaSNDTToiDa * nguoiLon;
+                        GiaTE = (int)(GiaSNDTToiDa * treEm) * 75 / 100;
                     }
+                    GiaTong = GiaNL + GiaTE;
+                    NgayTV = NgayTV.AddDays(SoNgayDiTour);
+                    //NgayTV = NgayTV.AddDays(-3);
                 }
+                else
+                {
+                    if (treEm.Equals(0))
+                    {
+                        GiaNL = (int)GiaSNDTKhachHangNhap * nguoiLon;
+                    }
+                    else
+                    {
+                        GiaNL = (int)GiaSNDTKhachHangNhap * nguoiLon;
+                        GiaTE = (int)(GiaSNDTKhachHangNhap * treEm) * 75 / 100;
+                    }
+                    GiaTong = GiaNL + GiaTE;
+                }
+                
 
                 //SendAdmin
                 string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/sendmail/sendAdmin.html"));
@@ -186,12 +151,12 @@ namespace DuLich.Controllers
                 content = content.Replace("{{SoDienThoai}}", soDienThoai.ToString());
                 content = content.Replace("{{Email}}", email);
                 content = content.Replace("{{LoaiXe}}", phuongTien.Ten);
-                content = content.Replace("{{NgayKhoiHanh}}", (dayKH + "/" + monthKH + "/" + yearKH).ToString());
-                content = content.Replace("{{NgayTroVe}}", (dayTV + "/" + monthTV + "/" + yearTV).ToString());
+                content = content.Replace("{{NgayKhoiHanh}}", (NgayKH.Day + "/" + NgayKH.Month + "/" + NgayKH.Year).ToString());
+                content = content.Replace("{{NgayTroVe}}", (NgayTV.Day + "/" + NgayTV.Month + "/" + NgayTV.Year).ToString());
                 content = content.Replace("{{DiaChiTha}}", diaChiTha);
                 content = content.Replace("{{DiaChiDon}}", diaChiDon);
                 content = content.Replace("{{GhiChu}}", tinNhan ?? "");
-                content = content.Replace("{{GiaTour}}", Gia.ToString("N0"));
+                content = content.Replace("{{GiaTour}}", GiaTong.ToString("N0"));
                 var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
                 new MailHelper().SendMail(toEmail, "Đơn đặt tuor", content);
 
@@ -204,11 +169,11 @@ namespace DuLich.Controllers
                 content1 = content1.Replace("{{SoDienThoai}}", soDienThoai.ToString());
                 content1 = content1.Replace("{{Email}}", email);
                 content1 = content1.Replace("{{LoaiXe}}", phuongTien.Ten);
-                content1 = content1.Replace("{{NgayKhoiHanh}}", (dayKH + "/" + monthKH + "/" + yearKH).ToString());
-                content1 = content1.Replace("{{NgayTroVe}}", (dayTV + "/" + monthTV + "/" + yearTV).ToString());
+                content1 = content1.Replace("{{NgayKhoiHanh}}", (NgayKH.Day + "/" + NgayKH.Month + "/" + NgayKH.Year).ToString());
+                content1 = content1.Replace("{{NgayTroVe}}", (NgayTV.Day + "/" + NgayTV.Month + "/" + NgayTV.Year).ToString());
                 content1 = content1.Replace("{{DiaChiTha}}", diaChiTha);
                 content1 = content1.Replace("{{DiaChiDon}}", diaChiDon);
-                content1 = content1.Replace("{{GiaTour}}", Gia.ToString("N0"));
+                content1 = content1.Replace("{{GiaTour}}", GiaTong.ToString("N0"));
                 new MailHelper().SendMail(email, "Đơn đặt tuor", content1);
             }
             catch (Exception ex)

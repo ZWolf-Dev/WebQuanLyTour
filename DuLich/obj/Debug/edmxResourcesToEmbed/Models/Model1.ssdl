@@ -61,6 +61,7 @@
     <Property Name="DiaChiTha" Type="nvarchar" MaxLength="500" />
     <Property Name="TourTuyChinh" Type="nvarchar" MaxLength="500" />
     <Property Name="LoaiXe" Type="nvarchar" MaxLength="500" />
+    <Property Name="KhachSan" Type="nvarchar" MaxLength="500" />
     <Property Name="SoLuongHanhKhach" Type="int" />
     <Property Name="SoLuongNguoiLon" Type="int" />
     <Property Name="SoLuongTreEm" Type="int" />

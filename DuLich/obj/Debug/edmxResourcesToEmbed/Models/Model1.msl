@@ -271,6 +271,7 @@
     <EntitySetMapping Name="DatTours">
       <EntityTypeMapping TypeName="DuLichDBModel.DatTour">
         <MappingFragment StoreEntitySet="DatTour">
+          <ScalarProperty Name="KhachSan" ColumnName="KhachSan" />
           <ScalarProperty Name="SoLuongTreEm" ColumnName="SoLuongTreEm" />
           <ScalarProperty Name="SoLuongNguoiLon" ColumnName="SoLuongNguoiLon" />
           <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
