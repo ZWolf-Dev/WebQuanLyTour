@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+    <button onclick="GetOne()">Get one</button>
+    <script>
+        function GetOne() {
+            var url = "https://localhost:44345/Api/ApiTour/GetOneJson";
+            var json = {
+
+            }
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: json,
+                dataType: "JSON",
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -3,3 +3,14 @@ D:\Website\DATTTN\Common\bin\Debug\Common.pdb
 D:\Website\DATTTN\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 D:\Website\DATTTN\Common\obj\Debug\Common.dll
 D:\Website\DATTTN\Common\obj\Debug\Common.pdb
+D:\Website\DATTTN\Common\bin\Debug\Newtonsoft.Json.dll
+D:\Website\DATTTN\Common\bin\Debug\System.Net.Http.Formatting.dll
+D:\Website\DATTTN\Common\bin\Debug\System.Web.Cors.dll
+D:\Website\DATTTN\Common\bin\Debug\System.Web.Http.Cors.dll
+D:\Website\DATTTN\Common\bin\Debug\System.Web.Http.dll
+D:\Website\DATTTN\Common\bin\Debug\Newtonsoft.Json.xml
+D:\Website\DATTTN\Common\bin\Debug\System.Net.Http.Formatting.xml
+D:\Website\DATTTN\Common\bin\Debug\System.Web.Http.xml
+D:\Website\DATTTN\Common\bin\Debug\System.Web.Http.Cors.xml
+D:\Website\DATTTN\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+D:\Website\DATTTN\Common\obj\Debug\Common.csproj.CopyComplete
