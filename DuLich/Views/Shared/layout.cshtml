@@ -77,12 +77,57 @@
                     <li class="main_nav__item"><a href="~/Home/Contact">LIÊN HỆ</a></li>
                 </ul>
             </div>
+
             <!-- Search_Top -->
             <div class="main_nav__search">
                 <form style="display: flex" action="~/TourDuLich/KetQuaTimKiem">
                     <input style="margin-top: 0.5em" name="ten" class="search_input" type="text" placeholder="Nhập từ khóa tìm Kiếm..">
                     <button class="search_button" type="submit">Search</button>
                 </form>
+            </div>
+
+            <!-- nav mobile -->
+            <label for="nav-mobile-input" class="main_nav_moble">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                </svg>
+            </label>
+
+            <input type="checkbox" hidden class="nav__input" id="nav-mobile-input">
+
+            <label for="nav-mobile-input" class="nav_overlay"></label>
+
+            <div class="nav__mobile">
+                <label for="nav-mobile-input" class="nav_mobile_close">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
+                    </svg>
+                </label>
+                <div class="bar_mobile_user">
+                    @if (user != null && Request.Cookies["user-dulich"] != null)
+                    {
+                        <div class="bar_mobile_user-image">
+                            <a href="/TaiKhoanHome/ThongTinTaiKhoan?tenDangNhap=@user.TenDangNhap"><img src="@user.HinhAnh" class="img-circle elevation-2 border border-dark border-10" style="margin-right: 20px; border-radius: 30px; background: linear-gradient(to right, #FF6633, #3333FF, #FF6633); height: 40px; width: 40px; "></a>
+                        </div>
+                        <div class="bar_mobile_user-name"><a href="~/TaiKhoanHome/ThongTinTaiKhoan?tenDangNhap=@user.TenDangNhap">@user.TenHienThi</a></div>
+                        <div class="bar_mobile_user-logout"><a href="~/TaiKhoanHome/DangXuat">Đăng Xuất</a></div>
+                    }
+                    else
+                    {
+                        <div class="bar_mobile_user-image">
+                            <img src="~/Data/HinhAnh/Icon.jpg" class="img-circle elevation-2 border border-dark border-5" style=" margin-right: 20px; border-radius: 30px; height: 35px; width: 35px;">
+                        </div>
+                        <div class="bar_mobile_user-login"><a href="~/TaiKhoanHome/FormDangNhap">Đăng Nhập</a></div>
+                        <div class="bar_mobile_user-regis"><a href="~/TaiKhoanHome/DangKy">Đăng Ký</a></div>
+                    }
+                </div>
+                <ul class="nav__mobile__list">
+                    <li class="nav__mobile__item"><a href="~/Home/Index">TRANG CHỦ</a></li>
+                    <li class="nav__mobile__item"><a href="~/Home/About">GIỚI THIỆU</a></li>
+                    <li class="nav__mobile__item"><a href="~/Home/Offers">ƯU ĐÃI</a></li>
+                    <li class="nav__mobile__item"><a href="~/Home/Blog">TIN TỨC</a></li>
+                    <li class="nav__mobile__item"><a href="~/Home/Contact">LIÊN HỆ</a></li>
+                </ul>
             </div>
         </div>
     </header>

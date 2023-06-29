@@ -2362,3 +2362,113 @@ h1, h2, h3, h4, h5, h6 {
 .box-tour-gallery {
     margin-bottom: 40px;
 }
+
+
+
+
+/* nav mobile */
+.main_nav_moble {
+    width: 30px;
+    height: 30px;
+    color: #e1e1e1;
+    display: none;
+    grid-column: 12/13;
+}
+
+.nav_overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+    animation: fadeIn linear 0.2s;
+}
+
+.nav__mobile {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    max-width: 100%;
+    background-color: #fff;
+    transform: translateX(+100%);
+    opacity: 0;
+    transition: transform linear 0.2s, opacity linear 0.2s;
+}
+
+.nav__mobile__list {
+    margin-top: 24px;
+}
+
+.nav__mobile__item {
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    padding: 8px 0 0 20px;
+    font-size: 1.4rem;
+}
+
+.nav_mobile_close {
+    width: 25px;
+    height: 25px;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 0.4rem;
+    left: 20rem;
+}
+
+.nav__input:checked ~ .nav_overlay {
+    display: block;
+}
+
+.nav__input:checked ~ .nav__mobile {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+@media (max-width: 1023px) {
+    .main_nav_moble {
+        display: block;
+    }
+
+    .main_nav__menu,
+    .main_nav__search {
+        display: none;
+    }
+}
+
+.bar_mobile_user-image {
+    display: inline-block;
+    margin: 0.5em 0 0 1em;
+    border-radius: 30px;
+    height: 45px;
+    width: 45px;
+}
+
+.bar_mobile_user-login,
+.bar_mobile_user-name {
+    right: 10em;
+    top: 1em;
+    float: right;
+}
+
+.bar_mobile_user-regis,
+.bar_mobile_user-logout {
+    float: right;
+    left:1em;
+    top: 1em;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
