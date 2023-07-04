@@ -2367,7 +2367,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* nav mobile */
-.main_nav_moble {
+/*.main_nav_moble {
     width: 30px;
     height: 30px;
     color: #e1e1e1;
@@ -2458,7 +2458,7 @@ h1, h2, h3, h4, h5, h6 {
 .bar_mobile_user-regis,
 .bar_mobile_user-logout {
     float: right;
-    left:1em;
+    left: 1em;
     top: 1em;
 }
 
@@ -2471,4 +2471,4 @@ h1, h2, h3, h4, h5, h6 {
     to {
         opacity: 1;
     }
-}
+}*/
